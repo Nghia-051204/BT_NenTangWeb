@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Đặt hàng — ShopVN</title>
+</head>
+<body>
+
+  <header>
+    <h1>🛒 Xác nhận &amp; Đặt hàng</h1>
+    <nav aria-label="Breadcrumb">
+      <ol>
+        <li><a href="#">Trang chủ</a></li>
+        <li><a href="#">Giỏ hàng</a></li>
+        <li aria-current="page">Thanh toán</li>
+      </ol>
+    </nav>
+  </header>
+
+  <hr />
+
+  <!-- ╔══════════════════════════════════════════════╗ -->
+  <!-- ║         PHẦN 1 — GIỎ HÀNG (TABLE)           ║ -->
+  <!-- ╚══════════════════════════════════════════════╝ -->
+  <section aria-labelledby="cart-heading">
+    <h2 id="cart-heading">Phần 1: Giỏ hàng của bạn</h2>
+
+    <table border="1" cellpadding="10" cellspacing="0" summary="Danh sách sản phẩm trong giỏ hàng">
+      <caption>Chi tiết đơn hàng #ORD-20240502</caption>
+
+      <thead>
+        <tr>
+          <th scope="col">STT</th>
+          <th scope="col">Sản phẩm</th>
+          <th scope="col">Đơn giá</th>
+          <th scope="col">Số lượng</th>
+          <th scope="col">Thành tiền</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <!-- Sản phẩm 1 -->
+        <tr>
+          <td>1</td>
+          <td>
+            <strong>SmartWatch Pro X1</strong><br />
+            <small>Màu: Bạc | Dây: Silicon trắng</small>
+          </td>
+          <td>2.990.000 ₫</td>
+          <td>1</td>
+          <td>2.990.000 ₫</td>
+        </tr>
+
+        <!-- Sản phẩm 2 -->
+        <tr>
+          <td>2</td>
+          <td>
+            <strong>SoundMax Elite 500</strong><br />
+            <small>Màu: Đen | Kết nối: Bluetooth 5.3</small>
+          </td>
+          <td>1.590.000 ₫</td>
+          <td>2</td>
+          <td>3.180.000 ₫</td>
+        </tr>
+
+        <!-- Sản phẩm 3 -->
+        <tr>
+          <td>3</td>
+          <td>
+            <strong>RunFlex Air 2024</strong><br />
+            <small>Size: 42 | Màu: Trắng-Xanh</small>
+          </td>
+          <td>890.000 ₫</td>
+          <td>1</td>
+          <td>890.000 ₫</td>
+        </tr>
+
+        <!-- Sản phẩm 4 -->
+        <tr>
+          <td>4</td>
+          <td>
+            <strong>Cáp sạc nhanh USB-C 100W</strong><br />
+            <small>Dài: 2m | Chuẩn: PD 3.0</small>
+          </td>
+          <td>199.000 ₫</td>
+          <td>3</td>
+          <td>597.000 ₫</td>
+        </tr>
+
+        <!-- Dòng phụ: phí vận chuyển -->
+        <tr>
+          <td colspan="4"><em>Phí vận chuyển</em></td>
+          <td>30.000 ₫</td>
+        </tr>
+
+        <!-- Dòng phụ: giảm giá áp dụng (placeholder, thực tế tính bởi server) -->
+        <tr>
+          <td colspan="4"><em>Giảm giá (mã SALE2026)</em></td>
+          <td>-200.000 ₫</td>
+        </tr>
+      </tbody>
+
+      <!-- tfoot — Tổng cộng -->
+      <tfoot>
+        <tr>
+          <th scope="row" colspan="4">
+            <strong>TỔNG CỘNG THANH TOÁN</strong>
+          </th>
+          <td><strong>7.487.000 ₫</strong></td>
+        </tr>
+      </tfoot>
+    </table>
+
+    <p>
+      <small>
+        * Giá đã bao gồm VAT 10%. Phí vận chuyển có thể thay đổi
+        tùy theo địa chỉ nhận hàng.
+      </small>
+    </p>
+  </section>
+
+  <hr />
+
+  <!-- ╔══════════════════════════════════════════════╗ -->
+  <!-- ║     PHẦN 2 + 3 — FORM THANH TOÁN            ║ -->
+  <!-- ╚══════════════════════════════════════════════╝ -->
+  <form action="#" method="POST" novalidate>
+
+    <!-- ─── PHẦN 2: THANH TOÁN ─── -->
+    <section aria-labelledby="payment-heading">
+      <h2 id="payment-heading">Phần 2: Phương thức thanh toán</h2>
+
+      <fieldset>
+        <legend>Chọn phương thức thanh toán <span aria-hidden="true">*</span></legend>
+
+        <!-- COD -->
+        <div>
+          <input
+            type="radio"
+            id="pay-cod"
+            name="payment_method"
+            value="cod"
+            required
+            checked
+          />
+          <label for="pay-cod">
+            💵 Thanh toán khi nhận hàng (COD)
+          </label>
+        </div>
+
+        <!-- Chuyển khoản -->
+        <div>
+          <input
+            type="radio"
+            id="pay-bank"
+            name="payment_method"
+            value="bank_transfer"
+          />
+          <label for="pay-bank">
+            🏦 Chuyển khoản ngân hàng
+          </label>
+        </div>
+
+        <!-- Ví điện tử -->
+        <div>
+          <input
+            type="radio"
+            id="pay-ewallet"
+            name="payment_method"
+            value="e_wallet"
+          />
+          <label for="pay-ewallet">
+            📱 Ví điện tử (MoMo / ZaloPay / VNPay)
+          </label>
+        </div>
+
+      </fieldset>
+
+      <!-- Thông tin bổ sung chuyển khoản (hiển thị khi người dùng chọn bank) -->
+      <details>
+        <summary>Xem thông tin tài khoản ngân hàng</summary>
+        <table border="1" cellpadding="6" cellspacing="0">
+          <caption>Thông tin chuyển khoản ShopVN</caption>
+          <tbody>
+            <tr><th scope="row">Ngân hàng</th><td>Vietcombank — Chi nhánh Hà Nội</td></tr>
+            <tr><th scope="row">Số tài khoản</th><td>1234567890</td></tr>
+            <tr><th scope="row">Chủ tài khoản</th><td>CÔNG TY TNHH SHOPVN</td></tr>
+            <tr><th scope="row">Nội dung CK</th><td>ORD-20240502 [SĐT của bạn]</td></tr>
+          </tbody>
+        </table>
+      </details>
+
+      <br />
+
+      <!-- Mã giảm giá -->
+      <fieldset>
+        <legend>Mã giảm giá</legend>
+
+        <div>
+          <label for="coupon">
+            Nhập mã giảm giá
+            <small>(định dạng: SALE + 4 chữ số, VD: SALE2026)</small>
+          </label><br />
+          <input
+            type="text"
+            id="coupon"
+            name="coupon_code"
+            placeholder="SALE2026"
+            pattern="SALE[0-9]{4}"
+            title="Mã giảm giá phải có định dạng SALE theo sau là đúng 4 chữ số (VD: SALE2026)"
+            maxlength="8"
+            autocomplete="off"
+          />
+        </div>
+
+      </fieldset>
+
+      <br />
+
+      <!-- Ghi chú đơn hàng -->
+      <fieldset>
+        <legend>Ghi chú đơn hàng <small>(tùy chọn)</small></legend>
+
+        <div>
+          <label for="note">
+            Ghi chú cho người giao hàng
+          </label><br />
+          <textarea
+            id="note"
+            name="order_note"
+            rows="4"
+            cols="50"
+            placeholder="VD: Gọi điện trước khi giao 30 phút. Để hàng trước cửa nếu không có người nhận..."
+            maxlength="500"
+          ></textarea>
+          <br />
+          <small>Tối đa 500 ký tự</small>
+        </div>
+
+      </fieldset>
+
+    </section>
+
+    <hr />
+
+    <!-- ─── PHẦN 3: THÔNG TIN GIAO HÀNG ─── -->
+    <section aria-labelledby="shipping-heading">
+      <h2 id="shipping-heading">Phần 3: Thông tin giao hàng</h2>
+
+      <!-- Thông tin người nhận -->
+      <fieldset>
+        <legend>Người nhận hàng</legend>
+
+        <div>
+          <label for="receiver-name">
+            Họ và tên người nhận <span aria-hidden="true">*</span>
+          </label><br />
+          <input
+            type="text"
+            id="receiver-name"
+            name="receiver_name"
+            placeholder="Nguyễn Thị Bình"
+            required
+            minlength="2"
+            maxlength="50"
+            autocomplete="name"
+          />
+        </div>
+
+        <br />
+
+        <div>
+          <label for="receiver-phone">
+            Số điện thoại <span aria-hidden="true">*</span>
+          </label><br />
+          <input
+            type="tel"
+            id="receiver-phone"
+            name="receiver_phone"
+            placeholder="0912345678"
+            required
+            pattern="[0-9]{10}"
+            title="Số điện thoại phải gồm đúng 10 chữ số"
+            autocomplete="tel"
+          />
+        </div>
+
+        <br />
+
+        <div>
+          <label for="receiver-email">Email nhận xác nhận đơn</label><br />
+          <input
+            type="email"
+            id="receiver-email"
+            name="receiver_email"
+            placeholder="nguyen.binh@email.com"
+            autocomplete="email"
+          />
+        </div>
+
+      </fieldset>
+
+      <br />
+
+      <!-- Địa chỉ giao hàng -->
+      <fieldset>
+        <legend>Địa chỉ giao hàng</legend>
+
+        <div>
+          <label for="ship-city">
+            Tỉnh / Thành phố <span aria-hidden="true">*</span>
+          </label><br />
+          <select id="ship-city" name="shipping_city" required>
+            <option value="" disabled selected>-- Chọn tỉnh/thành phố --</option>
+            <option value="HN">Hà Nội</option>
+            <option value="HCM">Hồ Chí Minh</option>
+            <option value="DN">Đà Nẵng</option>
+            <option value="HP">Hải Phòng</option>
+            <option value="CT">Cần Thơ</option>
+            <option value="BinhDuong">Bình Dương</option>
+            <option value="DongNai">Đồng Nai</option>
+            <option value="QN">Quảng Ninh</option>
+          </select>
+        </div>
+
+        <br />
+
+        <div>
+          <label for="ship-district">
+            Quận / Huyện <span aria-hidden="true">*</span>
+          </label><br />
+          <select id="ship-district" name="shipping_district" required>
+            <option value="" disabled selected>-- Chọn quận/huyện --</option>
+            <optgroup label="Hà Nội">
+              <option value="HN-HK">Hoàn Kiếm</option>
+              <option value="HN-BD">Ba Đình</option>
+              <option value="HN-CG">Cầu Giấy</option>
+              <option value="HN-DDA">Đống Đa</option>
+              <option value="HN-TH">Thanh Xuân</option>
+            </optgroup>
+            <optgroup label="Hồ Chí Minh">
+              <option value="HCM-Q1">Quận 1</option>
+              <option value="HCM-Q3">Quận 3</option>
+              <option value="HCM-BT">Bình Thạnh</option>
+              <option value="HCM-TD">Thủ Đức</option>
+            </optgroup>
+            <optgroup label="Đà Nẵng">
+              <option value="DN-HC">Hải Châu</option>
+              <option value="DN-TK">Thanh Khê</option>
+            </optgroup>
+          </select>
+        </div>
+
+        <br />
+
+        <div>
+          <label for="ship-address">
+            Địa chỉ chi tiết <span aria-hidden="true">*</span>
+          </label><br />
+          <textarea
+            id="ship-address"
+            name="shipping_address"
+            rows="3"
+            cols="50"
+            placeholder="Số nhà, tên đường, tổ/khu phố, phường/xã..."
+            required
+            maxlength="200"
+          ></textarea>
+        </div>
+
+      </fieldset>
+
+      <br />
+
+      <!-- Lịch giao hàng -->
+      <fieldset>
+        <legend>Lịch giao hàng</legend>
+
+        <!--
+          Ngày giao hàng mong muốn:
+          min = ngày mai — gán động qua script inline vì HTML không có "tomorrow" built-in.
+          Nếu cần hoàn toàn tĩnh, có thể hard-code (vd: min="2026-05-03").
+        -->
+        <div>
+          <label for="delivery-date">
+            Ngày giao hàng mong muốn <span aria-hidden="true">*</span>
+          </label><br />
+          <input
+            type="date"
+            id="delivery-date"
+            name="delivery_date"
+            required
+          />
+          <script>
+            (function () {
+              var tomorrow = new Date();
+              tomorrow.setDate(tomorrow.getDate() + 1);
+              document.getElementById('delivery-date').min =
+                tomorrow.toISOString().split('T')[0];
+            })();
+          </script>
+        </div>
+
+        <br />
+
+        <!-- Khung giờ nhận hàng -->
+        <div>
+          <label for="delivery-slot">
+            Khung giờ nhận hàng <span aria-hidden="true">*</span>
+          </label><br />
+          <select id="delivery-slot" name="delivery_slot" required>
+            <option value="" disabled selected>-- Chọn khung giờ --</option>
+            <option value="morning">🌅 Sáng — 8:00 đến 12:00</option>
+            <option value="afternoon">☀️ Chiều — 14:00 đến 18:00</option>
+            <option value="evening">🌆 Tối — 18:00 đến 21:00</option>
+          </select>
+        </div>
+
+        <br />
+
+        <!--
+          Thời gian giao hàng tối đa chấp nhận được (range slider):
+          min="1" max="7" step="1" — số ngày từ 1 đến 7
+          output[for] hiển thị giá trị hiện tại (native HTML, không cần JS)
+        -->
+        <div>
+          <label for="delivery-days">
+            Thời gian giao hàng tối đa chấp nhận:
+            <output for="delivery-days" id="delivery-days-output">3</output> ngày
+          </label><br />
+          <input
+            type="range"
+            id="delivery-days"
+            name="delivery_days"
+            min="1"
+            max="7"
+            step="1"
+            value="3"
+            oninput="document.getElementById('delivery-days-output').value = this.value"
+          />
+          <br />
+          <small>
+            1 ngày (hỏa tốc) ←————————→ 7 ngày (tiết kiệm)
+          </small>
+          <br />
+          <small>
+            <em>
+              Lưu ý: Giao hàng nhanh hơn có thể phát sinh phụ phí.
+              Nhân viên sẽ xác nhận qua số điện thoại đã đăng ký.
+            </em>
+          </small>
+        </div>
+
+      </fieldset>
+
+    </section>
+
+    <hr />
+
+    <!-- ─── CHECKBOX XÁC NHẬN ─── -->
+    <div>
+      <input
+        type="checkbox"
+        id="confirm-info"
+        name="confirm_info"
+        value="confirmed"
+        required
+      />
+      <label for="confirm-info">
+        Tôi xác nhận thông tin đơn hàng là chính xác và đồng ý với
+        <a href="#" target="_blank" rel="noopener noreferrer">Điều khoản mua hàng</a>
+        của ShopVN. <span aria-hidden="true">*</span>
+      </label>
+    </div>
+
+    <br />
+
+    <div>
+      <input
+        type="checkbox"
+        id="confirm-terms"
+        name="confirm_terms"
+        value="agreed"
+        required
+      />
+      <label for="confirm-terms">
+        Tôi đã đọc và đồng ý với
+        <a href="#" target="_blank" rel="noopener noreferrer">Chính sách hoàn trả</a>
+        và
+        <a href="#" target="_blank" rel="noopener noreferrer">Chính sách bảo mật</a>.
+        <span aria-hidden="true">*</span>
+      </label>
+    </div>
+
+    <br />
+
+    <p><small><span aria-hidden="true">*</span> Thông tin bắt buộc</small></p>
+
+    <!-- ─── NÚT HÀNH ĐỘNG ─── -->
+    <div>
+      <button
+        type="submit"
+        aria-label="Xác nhận đặt hàng — tổng thanh toán 7.487.000 ₫"
+      >
+        ✅ Xác nhận đặt hàng
+      </button>
+
+      &nbsp;&nbsp;
+
+      <button type="reset">
+        ↩ Nhập lại
+      </button>
+    </div>
+
+  </form>
+
+  <hr />
+
+  <footer>
+    <p>
+      🔒 Thông tin thanh toán được mã hóa SSL 256-bit. |
+      📞 Hotline: <a href="tel:19001234">1900 1234</a> (8:00–22:00 hằng ngày) |
+      &copy; 2024 <strong>ShopVN</strong>
+    </p>
+  </footer>
+
+</body>
+</html>

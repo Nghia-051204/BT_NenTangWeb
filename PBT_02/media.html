@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Giới thiệu sản phẩm — ShopVN</title>
+</head>
+<body>
+
+  <!-- ===================== HEADER / LOGO SVG ===================== -->
+  <header>
+
+    <!--
+      SVG INLINE — Logo thương hiệu "ShopVN"
+      Vẽ bằng các primitive shape cơ bản: circle, rect, polygon, text.
+    -->
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      role="img"
+      aria-label="Logo ShopVN"
+      viewBox="0 0 200 60"
+      width="200"
+      height="60"
+    >
+      <title>Logo ShopVN</title>
+
+      <!-- Nền badge hình chữ nhật bo góc -->
+      <rect x="2" y="2" width="196" height="56" rx="10" ry="10"
+            fill="#e53935" stroke="#b71c1c" stroke-width="2" />
+
+      <!-- Biểu tượng túi mua sắm (hình thang + quai) -->
+      <!-- Thân túi -->
+      <rect x="14" y="22" width="24" height="20" rx="3" ry="3"
+            fill="white" opacity="0.95" />
+      <!-- Quai túi (hình cung bằng path) -->
+      <path d="M18 22 Q26 10 34 22"
+            fill="none" stroke="white" stroke-width="2.5"
+            stroke-linecap="round" opacity="0.95" />
+      <!-- Khóa túi -->
+      <circle cx="26" cy="30" r="2.5" fill="#e53935" />
+
+      <!-- Ngôi sao 5 cánh nhỏ trang trí -->
+      <polygon
+        points="150,10 152,16 158,16 153,20 155,26 150,22 145,26 147,20 142,16 148,16"
+        fill="gold" />
+      <polygon
+        points="165,8 166.5,13 172,13 167.5,16.5 169,22 165,18.5 161,22 162.5,16.5 158,13 163.5,13"
+        fill="gold" />
+      <polygon
+        points="178,12 179,16 183,16 180,18.5 181,22 178,20 175,22 176,18.5 173,16 177,16"
+        fill="gold" opacity="0.8" />
+
+      <!-- Chữ "ShopVN" -->
+      <text x="46" y="38"
+            font-family="Arial, sans-serif"
+            font-size="22"
+            font-weight="bold"
+            fill="white"
+            letter-spacing="1">ShopVN</text>
+
+      <!-- Tagline nhỏ -->
+      <text x="46" y="50"
+            font-family="Arial, sans-serif"
+            font-size="9"
+            fill="#ffcdd2"
+            letter-spacing="0.5">Mua sắm thông minh</text>
+    </svg>
+
+    <h1>Giới thiệu sản phẩm nổi bật</h1>
+    <p>Khám phá bộ sưu tập mới nhất — chất lượng cao, giá tốt nhất thị trường.</p>
+
+  </header>
+
+  <hr />
+
+  <!-- ===================== ẢNH SẢN PHẨM (figure + figcaption) ===================== -->
+  <section>
+    <h2>Hình ảnh sản phẩm</h2>
+
+    <!-- Ảnh 1 -->
+    <figure>
+      <img
+        src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600"
+        alt="Đồng hồ thông minh màu bạc trên nền trắng, hiển thị mặt số kỹ thuật số"
+        width="600"
+        height="400"
+        loading="lazy"
+        style="max-width: 100%; height: auto; display: block;"
+      />
+      <figcaption>
+        <strong>SmartWatch Pro X1</strong> — Đồng hồ thông minh cao cấp, chống nước IP68,
+        pin 7 ngày. Giá: <strong>2.990.000 ₫</strong>
+      </figcaption>
+    </figure>
+
+    <br />
+
+    <!-- Ảnh 2 -->
+    <figure>
+      <img
+        src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600"
+        alt="Tai nghe chụp tai màu đen với đệm tai màu vàng, dây headband có logo thương hiệu"
+        width="600"
+        height="400"
+        loading="lazy"
+        style="max-width: 100%; height: auto; display: block;"
+      />
+      <figcaption>
+        <strong>SoundMax Elite 500</strong> — Tai nghe over-ear chống ồn chủ động (ANC),
+        độ trễ thấp 40ms, thời lượng pin 30 giờ. Giá: <strong>1.590.000 ₫</strong>
+      </figcaption>
+    </figure>
+
+    <br />
+
+    <!-- Ảnh 3 -->
+    <figure>
+      <img
+        src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?w=600"
+        alt="Giày thể thao màu trắng xanh với đế cao su, nhìn nghiêng trên nền gradient xanh nhạt"
+        width="600"
+        height="400"
+        loading="lazy"
+        style="max-width: 100%; height: auto; display: block;"
+      />
+      <figcaption>
+        <strong>RunFlex Air 2024</strong> — Giày chạy bộ công nghệ đế khí AirBoost,
+        trọng lượng siêu nhẹ 220g, đế chống trượt. Giá: <strong>890.000 ₫</strong>
+      </figcaption>
+    </figure>
+
+    <br />
+
+    <!-- Ảnh 4 (bonus) -->
+    <figure>
+      <img
+        src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=600"
+        alt="Máy ảnh mirrorless màu đen đặt trên mặt bàn gỗ, kèm ống kính 50mm tháo rời bên cạnh"
+        width="600"
+        height="400"
+        loading="lazy"
+        style="max-width: 100%; height: auto; display: block;"
+      />
+      <figcaption>
+        <strong>PhotoMirror Z6</strong> — Máy ảnh mirrorless cảm biến APS-C 24MP,
+        quay video 4K/60fps, kết nối Wi-Fi &amp; Bluetooth. Giá: <strong>18.500.000 ₫</strong>
+      </figcaption>
+    </figure>
+
+  </section>
+
+  <hr />
+
+  <!-- ===================== VIDEO YOUTUBE (iframe) ===================== -->
+  <section>
+    <h2>Video giới thiệu sản phẩm</h2>
+    <p>Xem video đánh giá chi tiết từ đội ngũ chuyên gia của chúng tôi:</p>
+
+    <!--
+      YouTube embed dùng thông số:
+      - allow: kiểm soát quyền truy cập camera/mic/fullscreen
+      - loading="lazy": trì hoãn tải iframe đến khi gần viewport
+      - title: bắt buộc cho accessibility
+    -->
+    <iframe
+      width="560"
+      height="315"
+      src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+      title="Video giới thiệu bộ sưu tập sản phẩm công nghệ ShopVN 2024"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowfullscreen
+      loading="lazy"
+      style="max-width: 100%;"
+    ></iframe>
+
+  </section>
+
+  <hr />
+
+  <!-- ===================== VIDEO HTML5 (<video>) ===================== -->
+  <section>
+    <h2>Video quảng cáo sản phẩm</h2>
+    <p>Clip ngắn giới thiệu SmartWatch Pro X1 — xem trực tiếp trên trang:</p>
+
+    <!--
+      <video> với:
+      - controls: hiển thị thanh điều khiển native
+      - poster: ảnh thumbnail trước khi play
+      - preload="metadata": chỉ tải metadata (duration, kích thước) khi load trang
+      - 2 <source>: mp4 (H.264) ưu tiên trước, webm (VP9) dự phòng
+      - <track>: phụ đề (subtitles) hỗ trợ accessibility
+      - Fallback text cho trình duyệt không hỗ trợ
+    -->
+    <video
+      controls
+      poster="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800"
+      preload="metadata"
+      width="640"
+      height="360"
+      style="max-width: 100%; height: auto; display: block;"
+    >
+      <source src="videos/smartwatch-promo.mp4"  type="video/mp4" />
+      <source src="videos/smartwatch-promo.webm" type="video/webm" />
+
+      <!-- Phụ đề tiếng Việt -->
+      <track
+        kind="subtitles"
+        src="subtitles/smartwatch-vi.vtt"
+        srclang="vi"
+        label="Tiếng Việt"
+        default
+      />
+      <!-- Phụ đề tiếng Anh -->
+      <track
+        kind="subtitles"
+        src="subtitles/smartwatch-en.vtt"
+        srclang="en"
+        label="English"
+      />
+
+      <!-- Fallback cho trình duyệt cũ không hỗ trợ <video> -->
+      <p>
+        Trình duyệt của bạn không hỗ trợ phát video HTML5.
+        <a href="videos/smartwatch-promo.mp4">Tải video về máy</a> để xem.
+      </p>
+    </video>
+
+    <details>
+      <summary>Thông tin kỹ thuật video</summary>
+      <ul>
+        <li>Định dạng: MP4 (H.264/AAC) · WebM (VP9/Opus)</li>
+        <li>Độ phân giải: 1280 × 720 (HD)</li>
+        <li>Thời lượng: 1 phút 45 giây</li>
+        <li>Phụ đề: Tiếng Việt, English</li>
+      </ul>
+    </details>
+
+  </section>
+
+  <hr />
+
+  <!-- ===================== AUDIO (<audio>) ===================== -->
+  <section>
+    <h2>Nhạc nền thương hiệu</h2>
+    <p>
+      Thưởng thức giai điệu nhận diện thương hiệu ShopVN —
+      âm nhạc do đội ngũ sáng tác độc quyền:
+    </p>
+
+    <!--
+      <audio> với:
+      - controls: hiển thị player native (play/pause/volume/seek)
+      - loop: lặp lại nhạc nền
+      - preload="none": không tải audio cho đến khi người dùng bấm play
+                       (tiết kiệm băng thông)
+      - 2 <source>: mp3 (phổ biến) và ogg/vorbis (mã nguồn mở, Firefox tốt hơn)
+    -->
+    <audio
+      controls
+      loop
+      preload="none"
+    >
+      <source src="audio/shopvn-theme.mp3" type="audio/mpeg" />
+      <source src="audio/shopvn-theme.ogg" type="audio/ogg" />
+
+      <!-- Fallback -->
+      <p>
+        Trình duyệt không hỗ trợ phát audio HTML5.
+        <a href="audio/shopvn-theme.mp3">Tải file âm thanh</a>.
+      </p>
+    </audio>
+
+    <p><small>🎵 Nhạc nền: "ShopVN Theme" — thời lượng 3:20 · Định dạng: MP3 320kbps / OGG</small></p>
+
+  </section>
+
+  <hr />
+
+  <!-- ===================== THÔNG TIN SẢN PHẨM BỔ SUNG ===================== -->
+  <section>
+    <h2>So sánh thông số kỹ thuật</h2>
+
+    <table border="1" cellpadding="8" cellspacing="0">
+      <caption>Bảng so sánh 3 sản phẩm nổi bật</caption>
+      <thead>
+        <tr>
+          <th scope="col">Sản phẩm</th>
+          <th scope="col">Giá</th>
+          <th scope="col">Pin</th>
+          <th scope="col">Bảo hành</th>
+          <th scope="col">Kho</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>SmartWatch Pro X1</td>
+          <td>2.990.000 ₫</td>
+          <td>7 ngày</td>
+          <td>12 tháng</td>
+          <td>Còn hàng</td>
+        </tr>
+        <tr>
+          <td>SoundMax Elite 500</td>
+          <td>1.590.000 ₫</td>
+          <td>30 giờ</td>
+          <td>12 tháng</td>
+          <td>Còn hàng</td>
+        </tr>
+        <tr>
+          <td>RunFlex Air 2024</td>
+          <td>890.000 ₫</td>
+          <td>—</td>
+          <td>6 tháng</td>
+          <td>Còn 5 đôi</td>
+        </tr>
+      </tbody>
+    </table>
+
+  </section>
+
+  <hr />
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer>
+    <p>
+      &copy; 2024 <strong>ShopVN</strong> — Mọi quyền được bảo lưu. |
+      <a href="#">Điều khoản</a> |
+      <a href="#">Chính sách bảo mật</a> |
+      <a href="mailto:support@shopvn.vn">support@shopvn.vn</a>
+    </p>
+  </footer>
+
+</body>
+</html>

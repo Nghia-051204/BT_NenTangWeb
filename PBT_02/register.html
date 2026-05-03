@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Đăng ký tài khoản</title>
+</head>
+<body>
+
+  <h1>Đăng ký tài khoản</h1>
+
+  <form action="#" method="POST">
+
+    <!-- ===================== FIELDSET 1: THÔNG TIN CÁ NHÂN ===================== -->
+    <fieldset>
+      <legend>Thông tin cá nhân</legend>
+
+      <!-- Họ tên -->
+      <div>
+        <label for="full-name">Họ và tên <span aria-hidden="true">*</span></label><br />
+        <input
+          type="text"
+          id="full-name"
+          name="full_name"
+          placeholder="Nguyễn Văn An"
+          required
+          minlength="2"
+          maxlength="50"
+          autocomplete="name"
+        />
+      </div>
+
+      <br />
+
+      <!-- Email -->
+      <div>
+        <label for="email">Email <span aria-hidden="true">*</span></label><br />
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="example@email.com"
+          required
+          autocomplete="email"
+        />
+      </div>
+
+      <br />
+
+      <!-- Số điện thoại -->
+      <div>
+        <label for="phone">Số điện thoại</label><br />
+        <input
+          type="tel"
+          id="phone"
+          name="phone"
+          placeholder="0912345678"
+          pattern="[0-9]{10}"
+          title="Số điện thoại phải gồm đúng 10 chữ số"
+          autocomplete="tel"
+        />
+      </div>
+
+      <br />
+
+      <!-- Ngày sinh -->
+      <!--
+        Lưu ý: attribute max="..." được gán động qua script inline bên dưới
+        để luôn bằng ngày hôm nay. Nếu cần hoàn toàn không dùng JS,
+        có thể hard-code giá trị (vd: max="2026-05-02"), nhưng sẽ bị lỗi thời.
+      -->
+      <div>
+        <label for="dob">Ngày sinh</label><br />
+        <input
+          type="date"
+          id="dob"
+          name="dob"
+        />
+        <script>
+          document.getElementById('dob').max = new Date().toISOString().split('T')[0];
+        </script>
+      </div>
+
+    </fieldset>
+
+    <br />
+
+    <!-- ===================== FIELDSET 2: TÀI KHOẢN ===================== -->
+    <fieldset>
+      <legend>Tài khoản</legend>
+
+      <!-- Username -->
+      <div>
+        <label for="username">Tên đăng nhập <span aria-hidden="true">*</span></label><br />
+        <input
+          type="text"
+          id="username"
+          name="username"
+          placeholder="user_name123"
+          required
+          pattern="[A-Za-z0-9_]{3,20}"
+          title="Tên đăng nhập chỉ gồm chữ cái, số, dấu gạch dưới (_), từ 3 đến 20 ký tự"
+          autocomplete="username"
+        />
+      </div>
+
+      <br />
+
+      <!-- Password -->
+      <div>
+        <label for="password">Mật khẩu <span aria-hidden="true">*</span></label><br />
+        <input
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Tối thiểu 8 ký tự, 1 chữ hoa, 1 số"
+          required
+          minlength="8"
+          pattern="(?=.*[A-Z])(?=.*[0-9]).{8,}"
+          title="Mật khẩu phải có ít nhất 8 ký tự, gồm ít nhất 1 chữ hoa và 1 chữ số"
+          autocomplete="new-password"
+        />
+      </div>
+
+      <br />
+
+      <!-- Xác nhận mật khẩu -->
+      <!--
+        HTML5 KHÔNG THỂ validate "confirm password" natively.
+        pattern chỉ kiểm tra regex trên chính giá trị của field đó,
+        không thể tham chiếu sang giá trị field khác.
+        Xem giải thích đầy đủ trong answers.md.
+      -->
+      <div>
+        <label for="confirm-password">Xác nhận mật khẩu <span aria-hidden="true">*</span></label><br />
+        <input
+          type="password"
+          id="confirm-password"
+          name="confirm_password"
+          placeholder="Nhập lại mật khẩu"
+          required
+          minlength="8"
+          pattern="(?=.*[A-Z])(?=.*[0-9]).{8,}"
+          title="Mật khẩu phải có ít nhất 8 ký tự, gồm ít nhất 1 chữ hoa và 1 chữ số"
+          autocomplete="new-password"
+        />
+      </div>
+
+    </fieldset>
+
+    <br />
+
+    <!-- ===================== FIELDSET 3: THÔNG TIN GIAO HÀNG ===================== -->
+    <fieldset>
+      <legend>Thông tin giao hàng</legend>
+
+      <!-- Tỉnh / Thành phố -->
+      <div>
+        <label for="city">Tỉnh / Thành phố <span aria-hidden="true">*</span></label><br />
+        <select id="city" name="city" required>
+          <option value="" disabled selected>-- Chọn tỉnh/thành phố --</option>
+          <option value="HN">Hà Nội</option>
+          <option value="HCM">Hồ Chí Minh</option>
+          <option value="DN">Đà Nẵng</option>
+          <option value="HP">Hải Phòng</option>
+          <option value="CT">Cần Thơ</option>
+          <option value="BinhDuong">Bình Dương</option>
+          <option value="DongNai">Đồng Nai</option>
+          <option value="QN">Quảng Ninh</option>
+        </select>
+      </div>
+
+      <br />
+
+      <!-- Quận / Huyện -->
+      <div>
+        <label for="district">Quận / Huyện <span aria-hidden="true">*</span></label><br />
+        <select id="district" name="district" required>
+          <option value="" disabled selected>-- Chọn quận/huyện --</option>
+          <optgroup label="Hà Nội">
+            <option value="HN-HK">Hoàn Kiếm</option>
+            <option value="HN-BD">Ba Đình</option>
+            <option value="HN-CG">Cầu Giấy</option>
+            <option value="HN-DDA">Đống Đa</option>
+          </optgroup>
+          <optgroup label="Hồ Chí Minh">
+            <option value="HCM-Q1">Quận 1</option>
+            <option value="HCM-Q3">Quận 3</option>
+            <option value="HCM-BT">Bình Thạnh</option>
+            <option value="HCM-TD">Thủ Đức</option>
+          </optgroup>
+          <optgroup label="Đà Nẵng">
+            <option value="DN-HC">Hải Châu</option>
+            <option value="DN-TK">Thanh Khê</option>
+          </optgroup>
+          <optgroup label="Hải Phòng">
+            <option value="HP-HB">Hồng Bàng</option>
+            <option value="HP-LC">Lê Chân</option>
+          </optgroup>
+        </select>
+      </div>
+
+      <br />
+
+      <!-- Địa chỉ chi tiết -->
+      <div>
+        <label for="address">Địa chỉ chi tiết <span aria-hidden="true">*</span></label><br />
+        <textarea
+          id="address"
+          name="address"
+          rows="3"
+          cols="40"
+          placeholder="Số nhà, tên đường, tổ/khu phố..."
+          required
+          maxlength="200"
+        ></textarea>
+      </div>
+
+      <br />
+
+      <!-- Giới tính -->
+      <fieldset>
+        <legend>Giới tính</legend>
+
+        <input
+          type="radio"
+          id="gender-male"
+          name="gender"
+          value="male"
+        />
+        <label for="gender-male">Nam</label>
+        &nbsp;&nbsp;
+
+        <input
+          type="radio"
+          id="gender-female"
+          name="gender"
+          value="female"
+        />
+        <label for="gender-female">Nữ</label>
+        &nbsp;&nbsp;
+
+        <input
+          type="radio"
+          id="gender-other"
+          name="gender"
+          value="other"
+        />
+        <label for="gender-other">Khác</label>
+      </fieldset>
+
+    </fieldset>
+
+    <br />
+
+    <!-- ===================== CHECKBOX ĐIỀU KHOẢN ===================== -->
+    <div>
+      <input
+        type="checkbox"
+        id="terms"
+        name="terms"
+        value="agreed"
+        required
+      />
+      <label for="terms">
+        Tôi đã đọc và đồng ý với
+        <a href="#" target="_blank" rel="noopener noreferrer">Điều khoản dịch vụ</a>
+        và
+        <a href="#" target="_blank" rel="noopener noreferrer">Chính sách bảo mật</a>
+        <span aria-hidden="true">*</span>
+      </label>
+    </div>
+
+    <br />
+
+    <p><small><span aria-hidden="true">*</span> Trường bắt buộc</small></p>
+
+    <!-- ===================== NÚT HÀNH ĐỘNG ===================== -->
+    <div>
+      <button type="submit">Đăng ký</button>
+      &nbsp;
+      <button type="reset">Nhập lại</button>
+    </div>
+
+  </form>
+
+</body>
+</html>

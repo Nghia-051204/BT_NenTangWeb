@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Kiểm tra kết quả dự đoán</title>
+</head>
+<body>
+  <h2>Kiểm tra kết quả dự đoán</h2>
+  <form id="f">
+    <fieldset>
+      <legend>Thông tin kiểm tra</legend>
+      <table cellpadding="6">
+        <tr>
+          <td><label for="tc1">TC1 (Họ tên)</label></td>
+          <td><input type="text" id="tc1" name="tc1" required size="30" placeholder="Nhập họ tên"></td>
+        </tr>
+        <tr>
+          <td><label for="tc2">TC2 (Email)</label></td>
+          <td><input type="email" id="tc2" name="tc2" size="30" value="abc"></td>
+        </tr>
+        <tr>
+          <td><label for="tc3">TC3 (Full Name)</label></td>
+          <td><input type="number" name="tc3" min="1" max="10" value="15"></td>
+        </tr>
+        <tr>
+          <td><label for="tc4">TC4 (SĐT)</label></td>
+          <td><input type="text" id="tc4" name="tc4" pattern="[0-9]{10}" value="abc123"></td>
+        </tr>
+        <tr>
+          <td><label for="tc5">TC5 (Mật khẩu)</label></td>
+          <td><input type="password" minlength="8" required name="tc5" value="abc"></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><button type="submit">Submit</button></td>
+        </tr>
+      </table>
+    </fieldset>
+  </form>
+</body>
+</html>
