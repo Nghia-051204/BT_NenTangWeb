@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Box Model Lab</title>
+    <link rel="stylesheet" href="boxmodel.css" />
+  </head>
+  <body>
+    <main>
+      <h1>Box Model Lab</h1>
+
+      <section>
+        <h2>Phần 1 — content-box vs border-box</h2>
+        <div class="row">
+          <div class="box box-content">
+            <h3>Box 1 (content-box)</h3>
+            <p>box-sizing: content-box (default)</p>
+          </div>
+
+          <div class="box box-border">
+            <h3>Box 2 (border-box)</h3>
+            <p>box-sizing: border-box</p>
+          </div>
+        </div>
+        <p class="note">
+          Mở DevTools → tab Computed để đo “width” thực tế của mỗi box.
+        </p>
+      </section>
+
+      <section>
+        <h2>Phần 2 — Layout 3 cột (container 1000px)</h2>
+
+        <h3>Trường hợp A: KHÔNG dùng border-box</h3>
+        <div class="layout layout-no-reset">
+          <div class="col sidebar">Sidebar (250px)</div>
+          <div class="col content">Content (500px)</div>
+          <div class="col ads">Ads (250px)</div>
+        </div>
+
+        <h3>Trường hợp B: DÙNG border-box</h3>
+        <div class="layout layout-borderbox">
+          <div class="col sidebar">Sidebar (250px)</div>
+          <div class="col content">Content (500px)</div>
+          <div class="col ads">Ads (250px)</div>
+        </div>
+
+        <p class="note">
+          Chụp screenshot 2 trường hợp để so sánh tổng kích thước thực tế.
+        </p>
+      </section>
+    </main>
+  </body>
+</html>

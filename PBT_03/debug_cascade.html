@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Debug Cascade Puzzle (Re-designed)</title>
+    <link rel="stylesheet" href="debug_cascade.css" />
+  </head>
+  <body>
+    <h1>Debug Cascade Puzzle</h1>
+
+    <section class="panel">
+      <h2>1) Cascade &amp; Inheritance</h2>
+
+      <div class="container">
+        <div class="card" id="featured">
+          <h2 class="title highlight">Sản phẩm A</h2>
+          <p class="desc">Mô tả sản phẩm</p>
+        </div>
+
+        <div class="card">
+          <h2 class="title">Sản phẩm B</h2>
+          <p class="desc highlight">Mô tả sản phẩm B</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel note">
+      <p>
+        Gợi ý: <span class="code">.highlight</span> có
+        <span class="code">!important</span>. Các giá trị
+        <span class="code">font-size</span> và
+        <span class="code">color</span> phải được suy ra theo specificity + thứ
+        tự ưu tiên của cascade + inheritance.
+      </p>
+    </section>
+  </body>
+</html>

@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSS Selector Test</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Syne:wght@400;700;800&display=swap');
+
+  :root {
+    --bg: #0d0f14;
+    --surface: #161820;
+    --border: #252830;
+    --text: #c8ccd8;
+    --muted: #555a6e;
+    --accent: #f0c060;
+    --code-bg: #1a1d26;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Syne', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 2rem;
+  }
+
+  h1.page-title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--accent);
+    letter-spacing: -0.03em;
+    margin-bottom: 0.25rem;
+  }
+  .subtitle {
+    font-size: 0.85rem;
+    color: var(--muted);
+    font-family: 'JetBrains Mono', monospace;
+    margin-bottom: 2rem;
+  }
+
+  .layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    max-width: 1100px;
+  }
+
+  @media (max-width: 760px) {
+    .layout { grid-template-columns: 1fr; }
+  }
+
+  /* ---- PREVIEW PANEL ---- */
+  .panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .panel-header {
+    background: var(--code-bg);
+    border-bottom: 1px solid var(--border);
+    padding: 0.6rem 1rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .panel-header .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--border); }
+  .panel-header .dot.y { background: #f0c060; }
+  .panel-header .dot.g { background: #60c090; }
+  .panel-header .dot.r { background: #c06060; }
+
+  /* ---- DEMO HTML ---- */
+  #demo-app {
+    padding: 1.25rem;
+    font-size: 0.88rem;
+  }
+  #demo-app header.top-bar.dark {
+    background: #1e2130;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.75rem 1rem;
+    margin-bottom: 1rem;
+  }
+  #demo-app h1 { font-size: 1.1rem; color: #e0e4f0; margin-bottom: 0.5rem; }
+  #demo-app nav { display: flex; gap: 0.75rem; }
+  #demo-app nav a {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--muted);
+    text-decoration: none;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    border: 1px solid transparent;
+  }
+  #demo-app nav a.active { color: var(--accent); border-color: var(--accent); }
+  #demo-app main { display: flex; flex-direction: column; gap: 0.75rem; }
+  #demo-app article.product {
+    background: #1a1d26;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.85rem 1rem;
+  }
+  #demo-app article.product h2 { font-size: 0.95rem; color: #e0e4f0; margin-bottom: 0.35rem; }
+  #demo-app article.product p { font-size: 0.8rem; color: var(--muted); line-height: 1.5; }
+  #demo-app article.product p.price { color: #60c090; font-weight: 700; font-family: 'JetBrains Mono', monospace; }
+  #demo-app article.product.featured { border-color: #3a4060; }
+
+  /* ---- SELECTOR LIST ---- */
+  .selector-list {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .sel-item {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.5rem 0.75rem;
+    align-items: start;
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.6rem 0.85rem;
+  }
+
+  .sel-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--muted);
+    padding-top: 2px;
+  }
+  .sel-body {}
+  .sel-code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.82rem;
+    color: var(--accent);
+  }
+  .sel-result {
+    font-size: 0.75rem;
+    color: var(--muted);
+    margin-top: 0.2rem;
+    min-height: 1em;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .sel-result .match {
+    color: #60c090;
+  }
+  .sel-result .count {
+    color: var(--muted);
+    font-size: 0.7rem;
+  }
+
+</style>
+</head>
+<body>
+
+<h1 class="page-title">CSS Selector Test</h1>
+<p class="subtitle">// kết quả của từng selector</p>
+
+<div class="layout">
+
+  <!-- LEFT: live HTML preview -->
+  <div class="panel">
+    <div class="panel-header">
+      <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+      &nbsp;preview — ShopTLU DOM
+    </div>
+    <div id="demo-app">
+      <header class="top-bar dark">
+        <h1>ShopTLU</h1>
+        <nav>
+          <a href="/" class="active">Home</a>
+          <a href="/products">Products</a>
+          <a href="/about">About</a>
+        </nav>
+      </header>
+      <main>
+        <article class="product">
+          <h2>iPhone 16</h2>
+          <p class="price">25.990.000đ</p>
+          <p>Mô tả sản phẩm...</p>
+        </article>
+        <article class="product featured">
+          <h2>MacBook Pro</h2>
+          <p class="price">45.990.000đ</p>
+          <p>Mô tả sản phẩm...</p>
+        </article>
+      </main>
+    </div>
+  </div>
+
+  <!-- RIGHT: selector list -->
+  <div class="panel">
+    <div class="panel-header">
+      <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+      &nbsp;selectors
+    </div>
+    <div class="selector-list">
+
+      <div class="sel-item">
+        <span class="sel-num">01</span>
+        <div class="sel-body">
+          <div class="sel-code">h1</div>
+          <div class="sel-result"><span class="match">"ShopTLU"</span></div>
+        </div>
+      </div>
+
+      <div class="sel-item">
+        <span class="sel-num">02</span>
+        <div class="sel-body">
+          <div class="sel-code">.price</div>
+          <div class="sel-result">
+            <span class="match">"25.990.000đ"</span><br>
+            <span class="match">"45.990.000đ"</span>
+            <span class="count"> · 2 elements</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="sel-item">
+        <span class="sel-num">03</span>
+        <div class="sel-body">
+          <div class="sel-code">#app header</div>
+          <div class="sel-result"><span class="match">"ShopTLU Home Products About"</span></div>
+        </div>
+      </div>
+
+      <div class="sel-item">
+        <span class="sel-num">04</span>
+        <div class="sel-body">
+          <div class="sel-code">nav a:first-child</div>
+          <div class="sel-result"><span class="match">"Home"</span></div>
+        </div>
+      </div>
+
+      <div class="sel-item">
+        <span class="sel-num">05</span>
+        <div class="sel-body">
+          <div class="sel-code">.product.featured h2</div>
+          <div class="sel-result"><span class="match">"MacBook Pro"</span></div>
+        </div>
+      </div>
+
+      <div class="sel-item">
+        <span class="sel-num">06</span>
+        <div class="sel-body">
+          <div class="sel-code">article &gt; p</div>
+          <div class="sel-result">
+            <span class="match">"25.990.000đ"</span><br>
+            <span class="match">"Mô tả sản phẩm..."</span><br>
+            <span class="match">"45.990.000đ"</span><br>
+            <span class="match">"Mô tả sản phẩm..."</span>
+            <span class="count"> · 4 elements</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="sel-item">
+        <span class="sel-num">07</span>
+        <div class="sel-body">
+          <div class="sel-code">a[href="/"]</div>
+          <div class="sel-result"><span class="match">"Home"</span></div>
+        </div>
+      </div>
+
+      <div class="sel-item">
+        <span class="sel-num">08</span>
+        <div class="sel-body">
+          <div class="sel-code">.top-bar.dark h1</div>
+          <div class="sel-result"><span class="match">"ShopTLU"</span></div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+</body>
+</html>

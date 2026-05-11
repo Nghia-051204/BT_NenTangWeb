@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Debug Layout - Float Break &amp; Fixes (Re-designed)</title>
+    <link rel="stylesheet" href="debug_layout.css" />
+  </head>
+
+  <body>
+    <h1>Debug Layout - Float Break &amp; Fixes</h1>
+
+    <section class="panel">
+      <h2>1) Bị vỡ mặc định (float + content-box)</h2>
+      <div class="container debug-broken">
+        <aside class="sidebar">
+          <div class="box-label">Sidebar</div>
+          <p class="meta">300px width + 20px*2 padding + 1px*2 border</p>
+        </aside>
+        <div class="content">
+          <div class="box-label">Content</div>
+          <p class="meta">660px width + 30px*2 padding + 1px*2 border</p>
+        </div>
+      </div>
+      <p class="explain">
+        Container 960px nhưng tổng kích thước thật:
+        <span class="code">342px + 722px = 1064px</span>
+        nên content bị xuống dòng.
+      </p>
+    </section>
+
+    <section class="panel">
+      <h2>2) Sửa 1: border-box</h2>
+      <div class="container debug-fix-borderbox">
+        <aside class="sidebar">
+          <div class="box-label">Sidebar (border-box)</div>
+        </aside>
+        <div class="content">
+          <div class="box-label">Content (border-box)</div>
+        </div>
+      </div>
+      <p class="explain">
+        Thêm <span class="code">box-sizing: border-box</span> để padding +
+        border không làm vượt width khai báo.
+      </p>
+    </section>
+
+    <section class="panel">
+      <h2>3) Sửa 2: không dùng float (dùng flex)</h2>
+      <div class="container debug-fix-flex">
+        <aside class="sidebar">
+          <div class="box-label">Sidebar (flex)</div>
+          <p class="meta">Giữ content-box, nhưng bỏ float</p>
+        </aside>
+        <div class="content">
+          <div class="box-label">Content (flex)</div>
+          <div class="meta">Layout side-by-side theo flex</div>
+        </div>
+      </div>
+      <p class="explain">
+        Đây là phương án “layout hiện đại”: bỏ float và dùng flex để tránh lỗi
+        tính toán theo float.
+      </p>
+    </section>
+  </body>
+</html>
