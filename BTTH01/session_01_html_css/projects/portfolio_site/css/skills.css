@@ -1,0 +1,33 @@
+.skills-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.skill-bar {
+    background: #e2e8f0;
+    border-radius: 10px;
+    height: 12px;
+    overflow: hidden;
+    margin-top: 0.5rem;
+}
+
+.skill-progress {
+    background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+    height: 100%;
+    width: 0;
+    animation: fillBar 1s forwards ease-out;
+}
+
+@keyframes fillBar {
+    to {
+        width: inherit;
+    }
+}
+
+@media (max-width: 768px) {
+    .skills-grid {
+        grid-template-columns: 1fr;
+    }
+}
