@@ -81,3 +81,35 @@ a:hover {
 .navbar {
   box-shadow: 0 2px 15px rgba(0,0,0,.05);
 }
+
+/* Typography */
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background-color: #f8fafc;
+  color: #334155;
+}
+
+/* Complete color palette - documented */
+/* Teal 100: #ccfbf1  |  Teal 500 (primary): #14b8a6  |  Teal 600 (hover): #0d9488 */
+/* Slate 900 (heading): #0f172a  |  Slate 700 (body): #334155  |  Slate 500 (muted): #64748b */
+/* Slate 200 (border): #e2e8f0  |  Slate 50 (bg-light): #f8fafc */
+
+h1, h2, h3, h4, h5, h6 {
+  color: #0f172a;
+}
+
+.text-muted {
+  color: #64748b !important;
+}
+
+.bg-light {
+  background-color: #f8fafc !important;
+}
+
+.navbar-brand {
+  color: #14b8a6 !important;
+}
+
+.nav-link:hover {
+  color: #14b8a6;
+}
