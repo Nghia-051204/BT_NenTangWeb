@@ -58,3 +58,26 @@ a {
 a:hover {
     color: #0d9488;
 }
+
+/* Custom spacing */
+.py-section {
+  padding-top:    5rem;
+  padding-bottom: 5rem;
+}
+
+/* Border radius */
+.card {
+  border-radius: 16px;
+  border: none;
+  box-shadow: 0 4px 20px rgba(0,0,0,.08);
+}
+.btn {
+  border-radius: 8px;
+}
+.form-control,
+.form-select {
+  border-radius: 10px;
+}
+.navbar {
+  box-shadow: 0 2px 15px rgba(0,0,0,.05);
+}
