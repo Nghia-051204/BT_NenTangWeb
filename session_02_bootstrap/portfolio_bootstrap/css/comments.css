@@ -1,0 +1,21 @@
+.comments-section .rounded-circle {
+  object-fit: cover;
+}
+
+.comment-reply {
+  border-left: 3px solid #e2e8f0;
+  border-radius: 0;
+}
+
+.btn-link {
+  color: #14b8a6;
+}
+
+.btn-link:hover {
+  color: #0d9488;
+}
+
+@media (max-width: 576px) {
+  .ms-4 { margin-left: 1rem !important; }
+  .ps-3 { padding-left: .75rem !important; }
+}
