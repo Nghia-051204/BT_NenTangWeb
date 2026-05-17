@@ -1,0 +1,60 @@
+/* Override Bootstrap CSS variables */
+:root {
+    --bs-primary: #14b8a6;
+    --bs-primary-rgb: 20, 184, 166;
+    --bs-secondary: #64748b;
+    --bs-secondary-rgb: 100, 116, 139;
+}
+
+/* Override component classes (Bootstrap dùng giá trị tĩnh) */
+.btn-primary {
+    background-color: #14b8a6;
+    border-color: #14b8a6;
+    color: #fff;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+    background-color: #0d9488;
+    border-color: #0d9488;
+    color: #fff;
+}
+
+.btn-outline-primary {
+    color: #14b8a6;
+    border-color: #14b8a6;
+}
+
+.btn-outline-primary:hover {
+    background-color: #14b8a6;
+    border-color: #14b8a6;
+    color: #fff;
+}
+
+.text-primary {
+    color: #14b8a6 !important;
+}
+
+.bg-primary {
+    background-color: #14b8a6 !important;
+}
+
+.border-primary {
+    border-color: #14b8a6 !important;
+}
+
+.progress-bar.bg-primary {
+    background-color: #14b8a6 !important;
+}
+
+.badge.bg-primary {
+    background-color: #14b8a6 !important;
+}
+
+a {
+    color: #14b8a6;
+}
+
+a:hover {
+    color: #0d9488;
+}
