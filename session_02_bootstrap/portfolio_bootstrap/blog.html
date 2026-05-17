@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="light">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,58 +12,101 @@
     <link rel="stylesheet" href="css/custom-theme.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css">
 </head>
+
 <body>
     <section id="blog" class="py-5">
-  <div class="container">
-    <h2 class="text-center mb-5">Blog</h2>
-    <div class="row">
-      <div class="col-lg-8">
-        <article class="card mb-4 border-0 shadow-sm">
-          <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=800" class="card-img-top" alt="Post 1">
-          <div class="card-body">
-            <span class="badge bg-primary">Technology</span>
-            <h3 class="card-title mt-2">Building a Portfolio with Bootstrap</h3>
-            <p class="card-text text-muted">
-              <small>By Author · Jan 15, 2026 · 5 min read</small>
-            </p>
-            <p class="card-text">Learn how to convert your HTML/CSS portfolio to Bootstrap 5...</p>
-            <a href="#" class="btn btn-outline-primary">Read More</a>
-          </div>
-        </article>
-        <article class="card mb-4 border-0 shadow-sm">
-          <img src="https://images.tristatetechnology.com/blog-images/uploads/2024/01/top-ui-ux-design-trends-to-watch-out-in-2024.png" class="card-img-top" alt="Post 2">
-          <div class="card-body">
-            <span class="badge bg-success">Tutorial</span>
-            <h3 class="card-title mt-2">CSS Grid vs Bootstrap Grid</h3>
-            <p class="card-text text-muted">
-              <small>By Author · Jan 10, 2026 · 8 min read</small>
-            </p>
-            <p class="card-text">A deep dive into both grid systems and when to use each...</p>
-            <a href="#" class="btn btn-outline-primary">Read More</a>
-          </div>
-        </article>
-        <article class="card mb-4 border-0 shadow-sm">
-          <img src="https://s3-hfx03.fptcloud.com/codelearnstorage/Upload/Blog/tai-sao-nen-hoc-javascript-63728744439.8512.jpg" class="card-img-top" alt="Post 3">
-          <div class="card-body">
-            <span class="badge bg-warning text-dark">Tips</span>
-            <h3 class="card-title mt-2">10 Bootstrap Utility Classes You Should Know</h3>
-            <p class="card-text text-muted">
-              <small>By Author · Jan 5, 2026 · 6 min read</small>
-            </p>
-            <p class="card-text">These utility classes will speed up your development...</p>
-            <a href="#" class="btn btn-outline-primary">Read More</a>
-          </div>
-        </article>
-      </div>
+        <div class="container">
+            <h2 class="text-center mb-5">Blog</h2>
+            <div class="row">
+                <div class="col-lg-8">
+                    <article class="card mb-4 border-0 shadow-sm">
+                        <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=800"
+                            class="card-img-top" alt="Post 1">
+                        <div class="card-body">
+                            <span class="badge bg-primary">Technology</span>
+                            <h3 class="card-title mt-2">Building a Portfolio with Bootstrap</h3>
+                            <p class="card-text text-muted">
+                                <small>By Author · Jan 15, 2026 · 5 min read</small>
+                            </p>
+                            <p class="card-text">Learn how to convert your HTML/CSS portfolio to Bootstrap 5...</p>
+                            <a href="#" class="btn btn-outline-primary">Read More</a>
+                        </div>
+                    </article>
+                    <article class="card mb-4 border-0 shadow-sm">
+                        <img src="https://images.tristatetechnology.com/blog-images/uploads/2024/01/top-ui-ux-design-trends-to-watch-out-in-2024.png"
+                            class="card-img-top" alt="Post 2">
+                        <div class="card-body">
+                            <span class="badge bg-success">Tutorial</span>
+                            <h3 class="card-title mt-2">CSS Grid vs Bootstrap Grid</h3>
+                            <p class="card-text text-muted">
+                                <small>By Author · Jan 10, 2026 · 8 min read</small>
+                            </p>
+                            <p class="card-text">A deep dive into both grid systems and when to use each...</p>
+                            <a href="#" class="btn btn-outline-primary">Read More</a>
+                        </div>
+                    </article>
+                    <article class="card mb-4 border-0 shadow-sm">
+                        <img src="https://s3-hfx03.fptcloud.com/codelearnstorage/Upload/Blog/tai-sao-nen-hoc-javascript-63728744439.8512.jpg"
+                            class="card-img-top" alt="Post 3">
+                        <div class="card-body">
+                            <span class="badge bg-warning text-dark">Tips</span>
+                            <h3 class="card-title mt-2">10 Bootstrap Utility Classes You Should Know</h3>
+                            <p class="card-text text-muted">
+                                <small>By Author · Jan 5, 2026 · 6 min read</small>
+                            </p>
+                            <p class="card-text">These utility classes will speed up your development...</p>
+                            <a href="#" class="btn btn-outline-primary">Read More</a>
+                        </div>
+                    </article>
+                </div>
 
-      <div class="col-lg-4">
-        <div class="sticky-top pt-4">
-          
+                <div class="col-lg-4">
+                    <div class="sticky-top pt-4">
+                        <div class="sticky-top pt-4">
+
+                            <!-- Search -->
+                            <div class="card mb-4 border-0 shadow-sm">
+                                <div class="card-body">
+                                    <h5 class="card-title">Search</h5>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search posts...">
+                                        <button class="btn btn-primary" type="button">Go</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Categories -->
+                            <div class="card mb-4 border-0 shadow-sm">
+                                <div class="card-header bg-white border-0">
+                                    <h5 class="mb-0">Categories</h5>
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        Technology
+                                        <span class="badge bg-primary rounded-pill">12</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        Tutorial
+                                        <span class="badge bg-primary rounded-pill">8</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        Tips & Tricks
+                                        <span class="badge bg-primary rounded-pill">5</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        Design
+                                        <span class="badge bg-primary rounded-pill">3</span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
-      </div>
-
-    </div>
-  </div>
-</section>
+    </section>
 </body>
+
 </html>
