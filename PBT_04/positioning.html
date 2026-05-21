@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CSS Positioning Demo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="positioning.css" />
+</head>
+<body>
+
+  <!-- ① FIXED HEADER -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="#" class="logo">
+        <span class="logo-mark">◈</span>
+        <span class="logo-text">LUMIÈRE</span>
+      </a>
+      <nav class="main-nav">
+        <a href="#" class="nav-link">Bộ sưu tập</a>
+        <a href="#" class="nav-link">Xu hướng</a>
+        <a href="#" class="nav-link">Giới thiệu</a>
+        <a href="#" class="nav-link nav-cta">Mua ngay</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- PAGE WRAPPER -->
+  <div class="page-wrapper">
+
+    <!-- ② STICKY SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sidebar-inner">
+        <p class="sidebar-label">Danh mục</p>
+        <ul class="sidebar-menu">
+          <li><a href="#">Tất cả sản phẩm <span class="count">48</span></a></li>
+          <li><a href="#">Nước hoa <span class="count">12</span></a></li>
+          <li><a href="#">Dưỡng da <span class="count">19</span></a></li>
+          <li><a href="#">Trang điểm <span class="count">9</span></a></li>
+          <li><a href="#">Tóc &amp; Thân thể <span class="count">8</span></a></li>
+        </ul>
+
+        <p class="sidebar-label" style="margin-top:2rem;">Mức giá</p>
+        <ul class="sidebar-menu">
+          <li><a href="#">Dưới 500K</a></li>
+          <li><a href="#">500K – 1 triệu</a></li>
+          <li><a href="#">Trên 1 triệu</a></li>
+        </ul>
+
+        <div class="sidebar-promo">
+          <span class="promo-badge">SALE</span>
+          <p>Giảm đến <strong>40%</strong> cho đơn trên 2 triệu</p>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+      <div class="section-header">
+        <h1 class="section-title">Sản phẩm nổi bật</h1>
+        <p class="section-sub">Được yêu thích nhất mùa này</p>
+      </div>
+
+      <!-- ③ PRODUCT CARDS WITH HOT BADGE -->
+      <div class="product-grid">
+
+        <!-- Card 1 -->
+        <article class="product-card">
+          <div class="card-image">
+            <div class="img-placeholder" style="background: linear-gradient(135deg,#f5c6a0,#e8956d);"></div>
+            <span class="badge-hot">HOT</span>
+          </div>
+          <div class="card-body">
+            <p class="card-brand">MAISON MARGIELA</p>
+            <h2 class="card-name">Replica — Beach Walk</h2>
+            <p class="card-desc">Mùi hương hè rực rỡ với tông kem dừa và gỗ trắng.</p>
+            <div class="card-footer">
+              <span class="card-price">1.250.000 ₫</span>
+              <button class="btn-add">+</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 2 -->
+        <article class="product-card">
+          <div class="card-image">
+            <div class="img-placeholder" style="background: linear-gradient(135deg,#b5cfe8,#7aa4c8);"></div>
+            <span class="badge-hot">HOT</span>
+          </div>
+          <div class="card-body">
+            <p class="card-brand">AESOP</p>
+            <h2 class="card-name">Tacit Eau de Parfum</h2>
+            <p class="card-desc">Hương thảo mộc tinh tế pha trộn juniper và bergamot.</p>
+            <div class="card-footer">
+              <span class="card-price">980.000 ₫</span>
+              <button class="btn-add">+</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 3 — no badge -->
+        <article class="product-card">
+          <div class="card-image">
+            <div class="img-placeholder" style="background: linear-gradient(135deg,#d4b8e0,#a07bbf);"></div>
+          </div>
+          <div class="card-body">
+            <p class="card-brand">BYREDO</p>
+            <h2 class="card-name">Gypsy Water</h2>
+            <p class="card-desc">Hương linh sam tươi mát kết hợp với vanilla ấm áp.</p>
+            <div class="card-footer">
+              <span class="card-price">1.750.000 ₫</span>
+              <button class="btn-add">+</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 4 -->
+        <article class="product-card">
+          <div class="card-image">
+            <div class="img-placeholder" style="background: linear-gradient(135deg,#a8d8b9,#5aaa7e);"></div>
+            <span class="badge-hot">HOT</span>
+          </div>
+          <div class="card-body">
+            <p class="card-brand">LE LABO</p>
+            <h2 class="card-name">Santal 33</h2>
+            <p class="card-desc">Mùi gỗ đàn hương tự nhiên mang cảm giác hoang dã.</p>
+            <div class="card-footer">
+              <span class="card-price">2.100.000 ₫</span>
+              <button class="btn-add">+</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 5 -->
+        <article class="product-card">
+          <div class="card-image">
+            <div class="img-placeholder" style="background: linear-gradient(135deg,#f9ddb4,#f0b04a);"></div>
+          </div>
+          <div class="card-body">
+            <p class="card-brand">DIPTYQUE</p>
+            <h2 class="card-name">Philosykos EDP</h2>
+            <p class="card-desc">Hương cây sung xanh mướt với nền gỗ và kem nhẹ.</p>
+            <div class="card-footer">
+              <span class="card-price">1.480.000 ₫</span>
+              <button class="btn-add">+</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 6 -->
+        <article class="product-card">
+          <div class="card-image">
+            <div class="img-placeholder" style="background: linear-gradient(135deg,#f2b3b3,#e06060);"></div>
+            <span class="badge-hot">HOT</span>
+          </div>
+          <div class="card-body">
+            <p class="card-brand">JO MALONE</p>
+            <h2 class="card-name">Peony &amp; Blush Suede</h2>
+            <p class="card-desc">Hoa mẫu đơn tươi sáng trên nền nhung hồng quyến rũ.</p>
+            <div class="card-footer">
+              <span class="card-price">1.900.000 ₫</span>
+              <button class="btn-add">+</button>
+            </div>
+          </div>
+        </article>
+
+      </div><!-- /product-grid -->
+
+      <!-- Filler text to allow scrolling -->
+      <section class="content-block">
+        <h2>Phong cách sống tinh tế</h2>
+        <p>Chúng tôi tuyển chọn kỹ lưỡng từng sản phẩm từ các thương hiệu nước hoa và làm đẹp danh tiếng thế giới, mang đến trải nghiệm mua sắm sang trọng ngay tại nhà bạn.</p>
+        <p>Mỗi hương thơm là một câu chuyện riêng — từ buổi sáng dịu dàng bên tách cà phê đến đêm tối huyền bí tràn đầy cảm xúc. Hãy để mùi hương định nghĩa bạn.</p>
+      </section>
+
+      <section class="content-block">
+        <h2>Cam kết chất lượng</h2>
+        <p>100% sản phẩm chính hãng, được nhập khẩu trực tiếp từ các nhà phân phối ủy quyền tại Pháp, Anh và Mỹ. Đội ngũ chuyên gia làm đẹp luôn sẵn sàng tư vấn miễn phí.</p>
+        <p>Giao hàng toàn quốc trong 2–3 ngày làm việc. Đổi trả trong 30 ngày nếu không hài lòng — không cần lý do.</p>
+      </section>
+
+    </main><!-- /main-content -->
+  </div><!-- /page-wrapper -->
+
+  <!-- ④ SCROLL TO TOP BUTTON -->
+  <button class="scroll-top" id="scrollTopBtn" aria-label="Lên đầu trang">↑</button>
+
+  <script>
+    // Show/hide scroll-to-top button
+    const btn = document.getElementById('scrollTopBtn');
+    window.addEventListener('scroll', () => {
+      btn.classList.toggle('visible', window.scrollY > 300);
+    });
+    btn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+</body>
+</html>

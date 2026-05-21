@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Flexbox Layout Demo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="flexbox.css" />
+</head>
+<body>
+
+  <!-- ══════════════════════════════════
+       PHẦN 1 — NAVBAR (Flexbox)
+       ══════════════════════════════════ -->
+  <header class="navbar">
+    <!-- LEFT: Logo -->
+    <a href="#" class="nav-logo">
+      <span class="logo-icon">⬡</span>
+      <span class="logo-word">NEXUS</span>
+    </a>
+
+    <!-- CENTER: Menu items -->
+    <nav class="nav-menu">
+      <a href="#" class="nav-item active">Home</a>
+      <a href="#" class="nav-item">Products</a>
+      <a href="#" class="nav-item">Collections</a>
+      <a href="#" class="nav-item">About</a>
+    </nav>
+
+    <!-- RIGHT: Auth buttons -->
+    <div class="nav-auth">
+      <a href="#" class="btn-login">Đăng nhập</a>
+      <a href="#" class="btn-register">Đăng ký</a>
+    </div>
+  </header>
+
+  <!-- ══════════════════════════════════
+       HERO BANNER
+       ══════════════════════════════════ -->
+  <section class="hero">
+    <div class="hero-inner">
+      <p class="hero-eyebrow">Bộ sưu tập 2025</p>
+      <h1 class="hero-title">Công nghệ<br /><em>gặp gỡ</em> phong cách</h1>
+      <p class="hero-sub">Khám phá những sản phẩm được thiết kế dành riêng cho bạn.</p>
+      <a href="#products" class="hero-cta">Xem ngay →</a>
+    </div>
+    <div class="hero-deco" aria-hidden="true">
+      <span class="deco-ring r1"></span>
+      <span class="deco-ring r2"></span>
+      <span class="deco-ring r3"></span>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════
+       PHẦN 2 — PRODUCT CARDS GRID (Flexbox)
+       ══════════════════════════════════ -->
+  <section class="products-section" id="products">
+    <div class="section-header">
+      <h2 class="section-title">Sản phẩm nổi bật</h2>
+      <p class="section-sub">8 lựa chọn được yêu thích nhất</p>
+    </div>
+
+    <!--
+      FLEX CONTAINER:
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+    -->
+    <div class="product-grid">
+
+      <!-- Card 1 -->
+      <article class="product-card">
+        <!--
+          FLEX ITEM:
+            flex: 0 0 calc(25% - 15px)   ← 4 cột
+        -->
+        <div class="card-img" style="--g: linear-gradient(135deg, #0ff2c8 0%, #007cf0 100%);">
+          <span class="card-tag">Mới</span>
+        </div>
+        <!-- card-body: display:flex; flex-direction:column; flex:1 -->
+        <div class="card-body">
+          <p class="card-cat">Điện tử</p>
+          <h3 class="card-name">Wireless Earbuds Pro X</h3>
+          <p class="card-desc">Âm thanh Hi-Fi 24bit, pin 36 giờ, chống nước IPX5.</p>
+          <!-- margin-top: auto → đẩy xuống đáy -->
+          <div class="card-footer">
+            <span class="card-price">1.290.000 ₫</span>
+            <button class="btn-buy">Mua ngay</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 2 -->
+      <article class="product-card">
+        <div class="card-img" style="--g: linear-gradient(135deg, #f7971e 0%, #ffd200 100%);">
+          <span class="card-tag hot">HOT</span>
+        </div>
+        <div class="card-body">
+          <p class="card-cat">Phụ kiện</p>
+          <h3 class="card-name">MagSafe Charger Stand</h3>
+          <p class="card-desc">Sạc nhanh 15W, đế nhôm cao cấp, tương thích đa thiết bị.</p>
+          <div class="card-footer">
+            <span class="card-price">650.000 ₫</span>
+            <button class="btn-buy">Mua ngay</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 3 -->
+      <article class="product-card">
+        <div class="card-img" style="--g: linear-gradient(135deg, #ee0979 0%, #ff6a00 100%);">
+        </div>
+        <div class="card-body">
+          <p class="card-cat">Thời trang</p>
+          <h3 class="card-name">Tech Fleece Jacket</h3>
+          <p class="card-desc">Chất liệu thông minh điều tiết nhiệt độ, siêu nhẹ 180g.</p>
+          <div class="card-footer">
+            <span class="card-price">2.100.000 ₫</span>
+            <button class="btn-buy">Mua ngay</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 4 -->
+      <article class="product-card">
+        <div class="card-img" style="--g: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+          <span class="card-tag sale">-20%</span>
+        </div>
+        <div class="card-body">
+          <p class="card-cat">Máy tính</p>
+          <h3 class="card-name">Mechanical Keyboard TKL</h3>
+          <p class="card-desc">Switch Cherry MX Red, RGB per-key, hot-swappable socket.</p>
+          <div class="card-footer">
+            <span class="card-price">1.840.000 ₫</span>
+            <button class="btn-buy">Mua ngay</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 5 -->
+      <article class="product-card">
+        <div class="card-img" style="--g: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);">
+          <span class="card-tag">Mới</span>
+        </div>
+        <div class="card-body">
+          <p class="card-cat">Smart Home</p>
+          <h3 class="card-name">Smart LED Strip 5m</h3>
+          <p class="card-desc">16 triệu màu, điều khiển bằng giọng nói, tích hợp Alexa.</p>
+          <div class="card-footer">
+            <span class="card-price">490.000 ₫</span>
+            <button class="btn-buy">Mua ngay</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 6 -->
+      <article class="product-card">
+        <div class="card-img" style="--g: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);">
+          <span class="card-tag hot">HOT</span>
+        </div>
+        <div class="card-body">
+          <p class="card-cat">Điện tử</p>
+          <h3 class="card-name">Portable SSD 1TB</h3>
+          <p class="card-desc">Tốc độ đọc 2000MB/s, cổng USB-C 3.2 Gen2, vỏ titan.</p>
+          <div class="card-footer">
+            <span class="card-price">3.200.000 ₫</span>
+            <button class="btn-buy">Mua ngay</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 7 -->
+      <article class="product-card">
+        <div class="card-img" style="--g: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+          <span class="card-tag sale">-15%</span>
+        </div>
+        <div class="card-body">
+          <p class="card-cat">Màn hình</p>
+          <h3 class="card-name">Monitor 27″ IPS 165Hz</h3>
+          <p class="card-desc">QHD 2560×1440, HDR400, Delta-E &lt; 2, cổng DP 1.4.</p>
+          <div class="card-footer">
+            <span class="card-price">7.500.000 ₫</span>
+            <button class="btn-buy">Mua ngay</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 8 -->
+      <article class="product-card">
+        <div class="card-img" style="--g: linear-gradient(135deg, #30cfd0 0%, #667eea 100%);">
+        </div>
+        <div class="card-body">
+          <p class="card-cat">Phụ kiện</p>
+          <h3 class="card-name">Ergonomic Mouse Vertical</h3>
+          <p class="card-desc">Giảm 57% lực cổ tay, DPI 200–4000, kết nối 2.4 GHz.</p>
+          <div class="card-footer">
+            <span class="card-price">920.000 ₫</span>
+            <button class="btn-buy">Mua ngay</button>
+          </div>
+        </div>
+      </article>
+
+    </div><!-- /product-grid -->
+  </section>
+
+  <footer class="site-footer">
+    <p>© 2025 NEXUS — Flexbox Layout Demo</p>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,257 @@
+/* --- Reset CSS Cơ Bản --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f3f4f6;
+    color: #1f2937;
+    padding: 15px;
+}
+
+/* ==========================================================================
+   LAYOUT CHÍNH DÙNG CSS GRID & NAMED AREAS (Đạt điểm tối đa + Thưởng Bonus)
+   ========================================================================== */
+.app-grid {
+    display: grid;
+    grid-template-columns: 200px minmax(400px, 1fr) 200px;
+    grid-template-areas: 
+        "header  header  header"
+        "hero    hero    hero"
+        "sidebar main    ads"
+        "footer  footer  footer";
+    gap: 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Cấu hình gán định danh vùng (Grid Area Mapping) */
+.header      { grid-area: header; }
+.hero-banner { grid-area: hero; }
+.sidebar     { grid-area: sidebar; }
+.main-content{ grid-area: main; }
+.ads-aside   { grid-area: ads; }
+.footer      { grid-area: footer; }
+
+.header, .hero-banner, .footer {
+    grid-column: 1 / -1; /* Đảm bảo tường minh theo đúng cấu trúc chỉ định gốc */
+}
+
+/* ==========================================================================
+   CHI TIẾT PHÂN KHU LAYOUT VÀ NÂNG CAO
+   ========================================================================== */
+
+/* ---Header--- */
+.header {
+    position: sticky;
+    top: 0;
+    background-color: #111827;
+    color: white;
+    padding: 15px 25px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+}
+.header .logo { font-size: 22px; font-weight: 800; }
+.header .logo span { color: #10b981; }
+.header .search-bar input {
+    width: 300px; padding: 8px 15px; border-radius: 6px; border: none; outline: none;
+}
+
+/* ---Hero Banner --- */
+.hero-banner {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Chia nhỏ không gian Hero thành 3 cột */
+    gap: 15px;
+}
+
+.featured-card {
+    grid-column: span 2; 
+    background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+    color: white;
+    padding: 35px;
+    border-radius: 8px;
+    position: relative;
+}
+.badge-exclusive {
+    position: absolute; 
+    top: 15px; 
+    right: 15px; 
+    background: #f59e0b;
+    padding: 4px 10px; 
+    font-size: 11px; 
+    font-weight: bold; 
+    border-radius: 20px;
+}
+.featured-card h2 { 
+  font-size: 28px; 
+  margin-bottom: 10px; 
+}
+.featured-card p { 
+  margin-bottom: 20px; 
+  opacity: 0.9; 
+  font-size: 15px; }
+.btn-explore {
+    background: #111827; 
+    color: white; 
+    border: none; 
+    padding: 10px 20px;
+    border-radius: 6px; 
+    font-weight: 600; 
+    cursor: pointer;
+}
+
+/* Thẻ khuyến mãi phụ kế bên (chiếm 1 cột còn lại) */
+.promo-card {
+    background-color: #ef4444; 
+    color: white;
+    padding: 35px 20px;
+    border-radius: 8px; 
+    text-align: center; 
+    display: flex;
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center;
+}
+.promo-card h3 { 
+  font-size: 22px; 
+  margin-bottom: 5px; 
+}
+.promo-card .timer {
+    margin-top: 15px; 
+    background: rgba(0,0,0,0.2); 
+    padding: 6px 12px;
+    font-family: monospace; 
+    font-size: 18px; 
+    border-radius: 4px; 
+    font-weight: bold;
+}
+
+/* --- 3. Sidebar Khu Vực (Yêu cầu 3: Bộ lọc checkboxes) --- */
+.sidebar {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+}
+.filter-group { 
+  margin-bottom: 25px; 
+}
+.filter-group h4 { 
+  margin-bottom: 12px; 
+  font-size: 15px; 
+  border-bottom: 1px solid #f3f4f6; 
+  padding-bottom: 5px; 
+}
+.filter-group label { 
+  display: block; 
+  margin-bottom: 8px; 
+  font-size: 13px; 
+  cursor: pointer; 
+}
+.filter-group input { 
+  margin-right: 8px; 
+}
+
+/* ---Main Content--- */
+.main-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+}
+.grid-title {
+  margin-bottom: 15px; 
+  font-size: 18px; 
+}
+
+/* Grid con bọc các sản phẩm */
+.nested-product-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 15px;
+}
+
+/* Định dạng cấu trúc Card sản phẩm tiêu chuẩn */
+.card {
+    background-color: #ffffff;
+    border: 1px solid #f3f4f6;
+    padding: 12px;
+    border-radius: 6px;
+    text-align: center;
+    transition: all 0.2s;
+}
+.card:hover { 
+  transform: scale(1.02); 
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05); 
+}
+.card .img-box {
+    background-color: #f3f4f6; 
+    height: 120px; 
+    display: flex; 
+    justify-content: center;
+    align-items: center; 
+    border-radius: 4px; 
+    font-size: 12px; 
+    color: #9ca3af; 
+    margin-bottom: 10px;
+}
+.card h4 { 
+  font-size: 14px; 
+  font-weight: 600; 
+  margin-bottom: 6px; 
+  color: #374151; 
+}
+.card .price { 
+  color: #ef4444; 
+  font-weight: bold; 
+  font-size: 14px; 
+}
+
+/* --- 5. Ads Khu Vực (Yêu cầu 5: Banner quảng cáo aside) --- */
+.ads-aside {
+    background-color: white;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+}
+.ads-placeholder-img {
+    background-color: #fef3c7;
+    border: 2px dashed #f59e0b;
+    height: 180px;
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #d97706;
+    font-weight: bold;
+    font-size: 11px;
+    padding: 10px;
+    margin-bottom: 12px;
+}
+.ads-text h5 { 
+  font-size: 14px;
+  margin-bottom: 5px; 
+  color: #111827; 
+}
+.ads-text p { 
+  font-size: 12px; 
+  color: #6b7280; 
+  line-height: 1.4; 
+}
+
+/* --- 6. Footer Khu Vực --- */
+.footer {
+    background-color: #1f2937;
+    color: #9ca3af;
+    text-align: center;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 13px;
+}

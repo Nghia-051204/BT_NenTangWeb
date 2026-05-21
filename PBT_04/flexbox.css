@@ -1,0 +1,454 @@
+/* ================================================
+   flexbox.css  —  Flexbox Layout Showcase
+   Aesthetic: Dark-mode tech / e-commerce
+   Fonts: Syne (display) + Outfit (body)
+   ================================================ */
+
+/* ── Custom Properties ── */
+:root {
+  --bg:          #0d0f14;
+  --bg-card:     #151820;
+  --bg-nav:      rgba(13, 15, 20, 0.88);
+  --border:      rgba(255,255,255,.07);
+  --text:        #e8eaf0;
+  --text-muted:  #7a8099;
+  --accent:      #00e5c0;
+  --accent-dim:  rgba(0, 229, 192, .12);
+  --hot:         #ff4d6d;
+  --sale:        #ffc947;
+
+  --nav-h:       68px;
+  --radius-card: 14px;
+  --gap-grid:    20px;
+
+  --ff-display:  'Syne', sans-serif;
+  --ff-body:     'Outfit', sans-serif;
+
+  --shadow-card:   0 2px 16px rgba(0,0,0,.35);
+  --shadow-hover:  0 12px 40px rgba(0,0,0,.55), 0 0 0 1px rgba(0,229,192,.18);
+}
+
+/* ── Reset & Base ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--ff-body);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+a { color: inherit; text-decoration: none; }
+button { cursor: pointer; font-family: inherit; border: none; background: none; }
+
+
+/* ════════════════════════════════════════════════
+   PHẦN 1 — NAVBAR
+   Key Flexbox:
+     display: flex
+     justify-content: space-between  → 3 vùng trải đều
+     align-items: center             → căn giữa dọc hoàn hảo
+   ════════════════════════════════════════════════ */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  height: var(--nav-h);
+  background: var(--bg-nav);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+
+  /* ── FLEXBOX NAVBAR ── */
+  display: flex;                     /* ① flex container */
+  align-items: center;               /* ② căn giữa dọc hoàn hảo */
+  justify-content: space-between;    /* ③ logo | menu | auth ở 3 vùng */
+  padding: 0 2.5rem;
+  gap: 1rem;
+}
+
+/* ── Logo (LEFT) ── */
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-shrink: 0;                    /* logo không bị co lại */
+}
+.logo-icon {
+  font-size: 1.5rem;
+  color: var(--accent);
+  line-height: 1;
+}
+.logo-word {
+  font-family: var(--ff-display);
+  font-size: 1.2rem;
+  font-weight: 800;
+  letter-spacing: .2em;
+  color: #fff;
+}
+
+/* ── Menu (CENTER) ── */
+.nav-menu {
+  /* ── FLEXBOX MENU ── */
+  display: flex;                     /* ① */
+  align-items: center;               /* ② vertical center */
+  gap: .25rem;                       /* items cách đều nhau */
+
+  /* Đặt menu chính giữa bằng cách ép nó chiếm không gian đều */
+  flex: 1;
+  justify-content: center;           /* ③ căn giữa ngang */
+}
+
+.nav-item {
+  position: relative;
+  font-size: .875rem;
+  font-weight: 500;
+  letter-spacing: .06em;
+  color: var(--text-muted);
+  padding: .55rem 1rem;
+  border-radius: 8px;
+  transition: color .2s, background .2s;
+  white-space: nowrap;
+}
+
+/* Underline via pseudo-element */
+.nav-item::after {
+  content: '';
+  position: absolute;
+  bottom: 4px;
+  left: 1rem;
+  right: 1rem;
+  height: 2px;
+  background: var(--accent);
+  border-radius: 2px;
+  transform: scaleX(0);
+  transition: transform .22s ease;
+}
+
+.nav-item:hover,
+.nav-item.active {
+  color: #fff;
+  background: rgba(255,255,255,.05);
+}
+
+.nav-item:hover::after,
+.nav-item.active::after {
+  transform: scaleX(1);
+}
+
+/* ── Auth buttons (RIGHT) ── */
+.nav-auth {
+  /* ── FLEXBOX AUTH ── */
+  display: flex;                     /* ① */
+  align-items: center;               /* ② */
+  gap: .6rem;
+  flex-shrink: 0;
+}
+
+.btn-login,
+.btn-register {
+  font-size: .825rem;
+  font-weight: 500;
+  padding: .5rem 1.1rem;
+  border-radius: 8px;
+  transition: all .2s;
+  letter-spacing: .04em;
+}
+.btn-login {
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+}
+.btn-login:hover {
+  color: #fff;
+  border-color: rgba(255,255,255,.25);
+  background: rgba(255,255,255,.05);
+}
+.btn-register {
+  color: var(--bg);
+  background: var(--accent);
+  font-weight: 600;
+}
+.btn-register:hover {
+  background: #00ffd5;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(0,229,192,.35);
+}
+
+
+/* ════════════════════════════════════════════════
+   HERO SECTION
+   ════════════════════════════════════════════════ */
+.hero {
+  position: relative;
+  overflow: hidden;
+  min-height: 340px;
+  display: flex;
+  align-items: center;
+  padding: 4rem 2.5rem;
+  border-bottom: 1px solid var(--border);
+  background:
+    radial-gradient(ellipse 60% 80% at 80% 50%, rgba(0,229,192,.06) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 60% at 20% 80%, rgba(102,126,234,.06) 0%, transparent 70%),
+    var(--bg);
+}
+.hero-inner { position: relative; z-index: 1; max-width: 600px; }
+.hero-eyebrow {
+  font-size: .75rem;
+  font-weight: 600;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .75rem;
+}
+.hero-title {
+  font-family: var(--ff-display);
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  font-weight: 800;
+  line-height: 1.1;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+.hero-title em {
+  font-style: normal;
+  color: var(--accent);
+}
+.hero-sub {
+  font-size: 1rem;
+  color: var(--text-muted);
+  margin-bottom: 2rem;
+}
+.hero-cta {
+  display: inline-block;
+  background: var(--accent);
+  color: var(--bg);
+  font-weight: 700;
+  font-size: .9rem;
+  letter-spacing: .06em;
+  padding: .75rem 1.8rem;
+  border-radius: 10px;
+  transition: transform .18s, box-shadow .18s;
+}
+.hero-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(0,229,192,.35);
+}
+
+/* Decorative rings */
+.hero-deco { position: absolute; right: 6%; top: 50%; transform: translateY(-50%); }
+.deco-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(0,229,192,.18);
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+}
+.r1 { width: 200px; height: 200px; }
+.r2 { width: 320px; height: 320px; border-color: rgba(0,229,192,.09); }
+.r3 { width: 460px; height: 460px; border-color: rgba(0,229,192,.04); }
+
+
+/* ════════════════════════════════════════════════
+   PHẦN 2 — PRODUCT CARDS GRID
+   Key Flexbox:
+     display: flex
+     flex-wrap: wrap          → xuống hàng tự động
+     gap: 20px
+     Mỗi card: flex: 0 0 calc(25% - 15px)  → 4 cột
+   ════════════════════════════════════════════════ */
+.products-section {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 3.5rem 2.5rem;
+}
+
+.section-header { margin-bottom: 2.25rem; }
+.section-title {
+  font-family: var(--ff-display);
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #fff;
+}
+.section-sub {
+  font-size: .875rem;
+  color: var(--text-muted);
+  margin-top: .35rem;
+}
+
+/* ── FLEX CONTAINER (Product Grid) ── */
+.product-grid {
+  display: flex;                     /* ① flex container */
+  flex-wrap: wrap;                   /* ② xuống hàng tự động */
+  gap: var(--gap-grid);              /* ③ khoảng cách đều 20px */
+}
+
+/* ── FLEX ITEM (Product Card) ── */
+.product-card {
+  flex: 0 0 calc(25% - 15px);       /* ④ flex: grow shrink basis → 4 cột */
+  /*
+    25% = 1/4 chiều rộng container
+    trừ 15px để bù cho gap (4 items × gap = 3 gaps × 20px = 60px → 60/4 = 15px)
+  */
+
+  /* Card: cũng là flex container (column) */
+  display: flex;                     /* ⑤ card là flex container */
+  flex-direction: column;            /* ⑥ sắp xếp theo cột */
+
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  cursor: pointer;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);       /* ← yêu cầu: hover nâng lên 5px */
+  box-shadow: var(--shadow-hover);   /* ← yêu cầu: shadow tăng */
+  border-color: rgba(0,229,192,.3);
+}
+
+/* ── Card Image ── */
+.card-img {
+  position: relative;
+  height: 155px;
+  background: var(--g);              /* gradient từ inline style */
+  flex-shrink: 0;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: .75rem;
+}
+.card-img::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,.25) 100%);
+}
+
+.card-tag {
+  font-size: .62rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  padding: .22rem .55rem;
+  border-radius: 5px;
+  background: rgba(0,0,0,.45);
+  color: #fff;
+  backdrop-filter: blur(6px);
+  position: relative;
+  z-index: 1;
+}
+.card-tag.hot  { background: var(--hot); }
+.card-tag.sale { background: var(--sale); color: #1a1200; }
+
+/* ── Card Body — flex column bên trong ── */
+.card-body {
+  display: flex;                     /* ⑦ body cũng là flex container */
+  flex-direction: column;            /* ⑧ column */
+  flex: 1;                           /* ⑨ chiếm toàn bộ không gian còn lại */
+  padding: 1rem 1.1rem 1.1rem;
+  gap: .3rem;
+}
+
+.card-cat {
+  font-size: .65rem;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.card-name {
+  font-family: var(--ff-display);
+  font-size: .95rem;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.3;
+  margin-top: .1rem;
+}
+.card-desc {
+  font-size: .775rem;
+  color: var(--text-muted);
+  line-height: 1.55;
+  flex: 1;                           /* đẩy footer xuống đáy */
+  margin-top: .3rem;
+}
+
+/* ── Card Footer (price + button) ── */
+.card-footer {
+  /* ── FLEXBOX FOOTER ── */
+  display: flex;                     /* ⑩ */
+  align-items: center;               /* ⑪ */
+  justify-content: space-between;    /* ⑫ */
+  margin-top: auto;                  /* ← KEY: luôn dính đáy card */
+  padding-top: .85rem;
+  border-top: 1px solid var(--border);
+  margin-top: .9rem;
+}
+
+.card-price {
+  font-size: .875rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.btn-buy {
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  color: var(--bg);
+  background: var(--accent);
+  padding: .4rem .9rem;
+  border-radius: 7px;
+  transition: background .18s, transform .15s;
+}
+.btn-buy:hover {
+  background: #00ffd5;
+  transform: scale(1.05);
+}
+
+
+/* ════════════════════════════════════════════════
+   FOOTER
+   ════════════════════════════════════════════════ */
+.site-footer {
+  text-align: center;
+  padding: 2rem;
+  font-size: .8rem;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border);
+  margin-top: 1rem;
+}
+
+
+/* ════════════════════════════════════════════════
+   RESPONSIVE
+   ════════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .product-card {
+    flex: 0 0 calc(50% - 10px);      /* 2 cột trên tablet */
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar { padding: 0 1.25rem; }
+  .nav-menu { display: none; }       /* ẩn menu trên mobile */
+
+  .hero { padding: 3rem 1.5rem; }
+
+  .products-section { padding: 2.5rem 1.25rem; }
+  .product-card {
+    flex: 0 0 calc(50% - 10px);      /* 2 cột */
+  }
+}
+
+@media (max-width: 480px) {
+  .product-card {
+    flex: 0 0 100%;                   /* 1 cột trên mobile nhỏ */
+  }
+  .btn-login { display: none; }
+}

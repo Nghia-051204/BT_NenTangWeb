@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài B3 - E-Commerce Grid Layout</title>
+    <link rel="stylesheet" href="grid.css">
+</head>
+<body>
+    <div class="app-grid">
+
+        <header class="header">
+            <div class="logo">Dev<span>Shop</span></div>
+            <div class="search-bar">
+                <input type="text" placeholder="Tìm kiếm sản phẩm...">
+            </div>
+            <div class="user-actions">Giỏ hàng (0)</div>
+        </header>
+
+        <section class="hero-banner">
+            <div class="featured-card">
+                <div class="badge-exclusive">XU HƯỚNG 2026</div>
+                <h2>Siêu Phẩm Công Nghệ Mới</h2>
+                <p>Trải nghiệm hiệu năng đỉnh cao đột phá với thiết kế tối giản hiện đại.</p>
+                <button class="btn-explore">Khám phá ngay</button>
+            </div>
+            <div class="promo-card">
+                <h3>⚡ Giờ Vàng</h3>
+                <p>Giảm đến 50%</p>
+                <div class="timer">02 : 15 : 40</div>
+            </div>
+        </section>
+
+        <aside class="sidebar">
+            <div class="filter-group">
+                <h4>Danh mục</h4>
+                <label><input type="checkbox" checked> Tất cả sản phẩm</label>
+                <label><input type="checkbox"> Điện tử & Máy tính</label>
+                <label><input type="checkbox"> Phụ kiện cao cấp</label>
+                <label><input type="checkbox"> Đồ gia dụng thông minh</label>
+            </div>
+            <div class="filter-group">
+                <h4>Khoảng giá</h4>
+                <label><input type="radio" name="price"> Dưới 1 triệu</label>
+                <label><input type="radio" name="price"> 1 - 5 triệu</label>
+                <label><input type="radio" name="price" checked> Trên 5 triệu</label>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <h3 class="grid-title">Danh sách sản phẩm</h3>
+            
+            <div class="nested-product-grid">
+                <div class="card">
+                    <div class="img-box">Product 1</div>
+                    <h4>Bàn phím cơ Không Dây</h4>
+                    <p class="price">2.450.000đ</p>
+                </div>
+                <div class="card">
+                    <div class="img-box">Product 2</div>
+                    <h4>Chuột Gaming Ergonomic</h4>
+                    <p class="price">1.250.000đ</p>
+                </div>
+                <div class="card">
+                    <div class="img-box">Product 3</div>
+                    <h4>Tai nghe chống ồn ANC</h4>
+                    <p class="price">4.990.000đ</p>
+                </div>
+                <div class="card">
+                    <div class="img-box">Product 4</div>
+                    <h4>Đèn LED để bàn thông minh</h4>
+                    <p class="price">850.000đ</p>
+                </div>
+                <div class="card">
+                    <div class="img-box">Product 5</div>
+                    <h4>Sạc dự phòng MagSafe 10k</h4>
+                    <p class="price">1.100.000đ</p>
+                </div>
+                <div class="card">
+                    <div class="img-box">Product 6</div>
+                    <h4>Giá đỡ Laptop Nhôm nguyên khối</h4>
+                    <p class="price">650.000đ</p>
+                </div>
+            </div>
+        </main>
+
+        <aside class="ads-aside">
+            <div class="ads-wrapper">
+                <div class="ads-placeholder-img">
+                    <span>QUẢNG CÁO<br>BANNER PLACEHOLDER</span>
+                </div>
+                <div class="ads-text">
+                    <h5>Ưu đãi đối tác Mastercard</h5>
+                    <p>Hoàn tiền ngay 10% cho mọi hóa đơn thanh toán trực tuyến vào thứ Sáu tuần này.</p>
+                </div>
+            </div>
+        </aside>
+
+        <footer class="footer">
+            <p>&copy; 2026 GridShop System. Thiết kế layout chuẩn CSS Grid bởi Frontend Developer Modern.</p>
+        </footer>
+
+    </div>
+
+</body>
+</html>
