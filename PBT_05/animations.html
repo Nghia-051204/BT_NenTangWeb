@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CSS Animations — Motion Lab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=JetBrains+Mono:wght@300;400;500&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="animations.css" />
+</head>
+<body>
+
+  <!-- ══════════════ HERO ══════════════ -->
+  <header class="page-hero">
+    <div class="hero-grid-lines" aria-hidden="true"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow"><span class="dot"></span> CSS Motion Lab — v2025</p>
+      <h1 class="hero-title">Animation<br /><em>Reference</em></h1>
+      <p class="hero-sub">5 hiệu ứng cốt lõi · Thuần CSS · Production-ready</p>
+      <div class="hero-chips">
+        <span>@keyframes</span>
+        <span>transition</span>
+        <span>transform</span>
+        <span>animation-timeline</span>
+      </div>
+    </div>
+    <nav class="chapter-nav">
+      <a href="#s1">01 Card Hover</a>
+      <a href="#s2">02 Button</a>
+      <a href="#s3">03 Image Zoom</a>
+      <a href="#s4">04 Spinner</a>
+      <a href="#s5">05 Fade-in Scroll</a>
+    </nav>
+  </header>
+
+  <main class="main-content">
+
+    <!-- ══════════════════════════════════════════════════════
+         SECTION 01 — CARD HOVER
+    ══════════════════════════════════════════════════════ -->
+    <section class="demo-section" id="s1">
+      <div class="section-label">
+        <span class="num">01</span>
+        <span class="tag">Card Hover Effect</span>
+      </div>
+
+      <div class="section-body">
+        <div class="demo-area card-demo-area">
+          <!-- Card A -->
+          <div class="product-card">
+            <div class="card-img-wrap">
+              <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&q=80"
+                   alt="Đồng hồ" loading="lazy" />
+              <span class="card-badge">Mới</span>
+            </div>
+            <div class="card-info">
+              <p class="card-cat">Phụ kiện</p>
+              <h3 class="card-name">Đồng Hồ Cổ Điển</h3>
+              <p class="card-price">1.250.000 ₫</p>
+            </div>
+          </div>
+          <!-- Card B -->
+          <div class="product-card">
+            <div class="card-img-wrap">
+              <img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=400&q=80"
+                   alt="Túi da" loading="lazy" />
+              <span class="card-badge sale">−20%</span>
+            </div>
+            <div class="card-info">
+              <p class="card-cat">Túi xách</p>
+              <h3 class="card-name">Túi Da Thủ Công</h3>
+              <p class="card-price">890.000 ₫</p>
+            </div>
+          </div>
+          <!-- Card C -->
+          <div class="product-card">
+            <div class="card-img-wrap">
+              <img src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?w=400&q=80"
+                   alt="Giày" loading="lazy" />
+            </div>
+            <div class="card-info">
+              <p class="card-cat">Thời trang</p>
+              <h3 class="card-name">Giày Thể Thao</h3>
+              <p class="card-price">650.000 ₫</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="code-block">
+          <p class="code-label">CSS</p>
+          <pre><code><span class="c-sel">.product-card</span> {
+  <span class="c-prop">transition</span>: <span class="c-val">all 0.3s ease</span>;
+}
+<span class="c-sel">.product-card:hover</span> {
+  <span class="c-prop">transform</span>: <span class="c-val">translateY(-8px)</span>;
+  <span class="c-prop">box-shadow</span>: <span class="c-val">0 20px 48px rgba(0,0,0,.18)</span>;
+}</code></pre>
+        </div>
+
+        <p class="effect-note">↑ Hover vào bất kỳ card nào để xem hiệu ứng nâng lên + đổ bóng sâu hơn.</p>
+      </div>
+    </section>
+
+
+    <!-- ══════════════════════════════════════════════════════
+         SECTION 02 — BUTTON HOVER
+    ══════════════════════════════════════════════════════ -->
+    <section class="demo-section" id="s2">
+      <div class="section-label">
+        <span class="num">02</span>
+        <span class="tag">Button Hover</span>
+      </div>
+
+      <div class="section-body">
+        <div class="demo-area btn-demo-area">
+
+          <!-- Variant A: Fill sweep -->
+          <div class="btn-demo-group">
+            <p class="btn-variant-label">Fill Sweep</p>
+            <button class="btn btn-sweep">Mua ngay</button>
+          </div>
+
+          <!-- Variant B: Outline pop -->
+          <div class="btn-demo-group">
+            <p class="btn-variant-label">Outline + Scale</p>
+            <button class="btn btn-outline-pop">Mua ngay</button>
+          </div>
+
+          <!-- Variant C: Glow pulse -->
+          <div class="btn-demo-group">
+            <p class="btn-variant-label">Glow Pulse</p>
+            <button class="btn btn-glow">Mua ngay</button>
+          </div>
+
+          <!-- Variant D: Slide label -->
+          <div class="btn-demo-group">
+            <p class="btn-variant-label">Label Slide</p>
+            <button class="btn btn-slide">
+              <span class="btn-default">Mua ngay</span>
+              <span class="btn-hover">→ Thêm vào giỏ</span>
+            </button>
+          </div>
+
+        </div>
+
+        <div class="code-block">
+          <p class="code-label">CSS</p>
+          <pre><code><span class="c-sel">.btn</span> {
+  <span class="c-prop">transition</span>: <span class="c-val">background-color 0.25s ease,
+              color 0.25s ease,
+              transform 0.2s ease</span>;
+}
+<span class="c-sel">.btn:hover</span> {
+  <span class="c-prop">background-color</span>: <span class="c-val">var(--accent)</span>;
+  <span class="c-prop">color</span>: <span class="c-val">#0d0d0f</span>;
+  <span class="c-prop">transform</span>: <span class="c-val">scale(1.05)</span>;
+}</code></pre>
+        </div>
+
+        <p class="effect-note">↑ 4 biến thể — cùng thuộc tính CSS, khác cách khai thác transition.</p>
+      </div>
+    </section>
+
+
+    <!-- ══════════════════════════════════════════════════════
+         SECTION 03 — IMAGE ZOOM
+    ══════════════════════════════════════════════════════ -->
+    <section class="demo-section" id="s3">
+      <div class="section-label">
+        <span class="num">03</span>
+        <span class="tag">Image Zoom</span>
+      </div>
+
+      <div class="section-body">
+        <div class="demo-area img-zoom-area">
+
+          <div class="zoom-card">
+            <div class="zoom-wrap">
+              <img src="https://images.unsplash.com/photo-1585386959984-a4155224a1ad?w=600&q=80"
+                   alt="Nước hoa" loading="lazy" />
+              <div class="zoom-overlay">
+                <span>Xem chi tiết</span>
+              </div>
+            </div>
+            <p class="zoom-label">scale(1.1) · ease-out</p>
+          </div>
+
+          <div class="zoom-card">
+            <div class="zoom-wrap zoom-wide">
+              <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=600&q=80"
+                   alt="Máy ảnh" loading="lazy" />
+              <div class="zoom-overlay">
+                <span>Xem chi tiết</span>
+              </div>
+            </div>
+            <p class="zoom-label">scale(1.15) · ease · 0.5s</p>
+          </div>
+
+          <div class="zoom-card">
+            <div class="zoom-wrap zoom-pan">
+              <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=600&q=80"
+                   alt="Laptop" loading="lazy" />
+              <div class="zoom-overlay">
+                <span>Xem chi tiết</span>
+              </div>
+            </div>
+            <p class="zoom-label">scale + translate (pan)</p>
+          </div>
+
+        </div>
+
+        <div class="code-block">
+          <p class="code-label">CSS</p>
+          <pre><code><span class="c-sel">.zoom-wrap</span> {
+  <span class="c-prop">overflow</span>: <span class="c-val">hidden</span>;  <span class="c-cmt">/* clamp image */</span>
+}
+<span class="c-sel">.zoom-wrap img</span> {
+  <span class="c-prop">transition</span>: <span class="c-val">transform 0.4s ease-out</span>;
+}
+<span class="c-sel">.zoom-wrap:hover img</span> {
+  <span class="c-prop">transform</span>: <span class="c-val">scale(1.1)</span>;
+}</code></pre>
+        </div>
+
+        <p class="effect-note">↑ overflow: hidden là chìa khóa — ảnh phóng to nhưng bị "kẹp" trong container.</p>
+      </div>
+    </section>
+
+
+    <!-- ══════════════════════════════════════════════════════
+         SECTION 04 — LOADING SPINNER
+    ══════════════════════════════════════════════════════ -->
+    <section class="demo-section" id="s4">
+      <div class="section-label">
+        <span class="num">04</span>
+        <span class="tag">Loading Spinner</span>
+      </div>
+
+      <div class="section-body">
+        <div class="demo-area spinner-area">
+
+          <!-- Spinner 1: Classic border -->
+          <div class="spinner-group">
+            <div class="spinner spin-classic"></div>
+            <p class="spinner-label">Classic</p>
+            <code class="spinner-code">border-style: solid</code>
+          </div>
+
+          <!-- Spinner 2: Dual ring -->
+          <div class="spinner-group">
+            <div class="spinner spin-dual"></div>
+            <p class="spinner-label">Dual Ring</p>
+            <code class="spinner-code">counter-rotate</code>
+          </div>
+
+          <!-- Spinner 3: Dot chase -->
+          <div class="spinner-group">
+            <div class="spinner spin-dots">
+              <span></span><span></span><span></span>
+              <span></span><span></span><span></span>
+              <span></span><span></span>
+            </div>
+            <p class="spinner-label">Dot Chase</p>
+            <code class="spinner-code">animation-delay stagger</code>
+          </div>
+
+          <!-- Spinner 4: Pulse ring -->
+          <div class="spinner-group">
+            <div class="spinner spin-pulse"></div>
+            <p class="spinner-label">Pulse</p>
+            <code class="spinner-code">scale + opacity</code>
+          </div>
+
+          <!-- Spinner 5: Bar loader -->
+          <div class="spinner-group">
+            <div class="spinner spin-bars">
+              <span></span><span></span><span></span><span></span><span></span>
+            </div>
+            <p class="spinner-label">Bars</p>
+            <code class="spinner-code">scaleY keyframe</code>
+          </div>
+
+        </div>
+
+        <div class="code-block">
+          <p class="code-label">CSS — Classic Spinner</p>
+          <pre><code><span class="c-sel">@keyframes spin</span> {
+  <span class="c-prop">from</span> { <span class="c-val">transform: rotate(0deg)</span> }
+  <span class="c-prop">to</span>   { <span class="c-val">transform: rotate(360deg)</span> }
+}
+
+<span class="c-sel">.spinner</span> {
+  <span class="c-prop">width</span>: <span class="c-val">48px</span>;
+  <span class="c-prop">height</span>: <span class="c-val">48px</span>;
+  <span class="c-prop">border</span>: <span class="c-val">3px solid rgba(0,229,195,.2)</span>;
+  <span class="c-prop">border-top-color</span>: <span class="c-val">#00e5c3</span>;
+  <span class="c-prop">border-radius</span>: <span class="c-val">50%</span>;
+  <span class="c-prop">animation</span>: <span class="c-val">spin 1s linear infinite</span>;
+}</code></pre>
+        </div>
+
+        <p class="effect-note">↑ 5 biến thể spinner — tất cả dùng @keyframes thuần, không cần JS.</p>
+      </div>
+    </section>
+
+
+    <!-- ══════════════════════════════════════════════════════
+         SECTION 05 — FADE-IN SCROLL
+    ══════════════════════════════════════════════════════ -->
+    <section class="demo-section" id="s5">
+      <div class="section-label">
+        <span class="num">05</span>
+        <span class="tag">Fade-in khi Scroll</span>
+      </div>
+
+      <div class="section-body">
+        <p class="scroll-instruction">↓ Cuộn xuống để xem các card xuất hiện lần lượt</p>
+
+        <div class="demo-area fade-demo-area">
+          <div class="fade-card fade-in-item">
+            <div class="fade-icon">✦</div>
+            <h4>Opacity 0 → 1</h4>
+            <p>Từ hoàn toàn trong suốt đến hiển thị đầy đủ theo trục Y.</p>
+          </div>
+          <div class="fade-card fade-in-item" style="--delay:.1s">
+            <div class="fade-icon">◈</div>
+            <h4>translateY 20px → 0</h4>
+            <p>Kết hợp dịch chuyển nhẹ lên trên tạo cảm giác "nổi lên".</p>
+          </div>
+          <div class="fade-card fade-in-item" style="--delay:.2s">
+            <div class="fade-icon">◇</div>
+            <h4>animation-fill-mode</h4>
+            <p><code>both</code> giữ trạng thái cuối, tránh flash trước khi animation chạy.</p>
+          </div>
+          <div class="fade-card fade-in-item" style="--delay:.3s">
+            <div class="fade-icon">⬡</div>
+            <h4>animation-timeline</h4>
+            <p>CSS hiện đại dùng <code>view()</code> để trigger chính xác khi vào viewport.</p>
+          </div>
+          <div class="fade-card fade-in-item" style="--delay:.4s">
+            <div class="fade-icon">✿</div>
+            <h4>Stagger Delay</h4>
+            <p>Mỗi phần tử delay thêm 100ms tạo hiệu ứng cascading mượt mà.</p>
+          </div>
+          <div class="fade-card fade-in-item" style="--delay:.5s">
+            <div class="fade-icon">◉</div>
+            <h4>CSS-Only</h4>
+            <p>Không cần Intersection Observer hay JavaScript — thuần CSS.</p>
+          </div>
+        </div>
+
+        <div class="code-block">
+          <p class="code-label">CSS — Fade-in Scroll</p>
+          <pre><code><span class="c-sel">@keyframes fadeInUp</span> {
+  <span class="c-prop">from</span> {
+    <span class="c-val">opacity: 0;
+    transform: translateY(20px);</span>
+  }
+  <span class="c-prop">to</span> {
+    <span class="c-val">opacity: 1;
+    transform: translateY(0);</span>
+  }
+}
+
+<span class="c-sel">.fade-in-item</span> {
+  <span class="c-prop">animation</span>: <span class="c-val">fadeInUp 0.6s ease both</span>;
+  <span class="c-prop">animation-delay</span>: <span class="c-val">var(--delay, 0s)</span>;
+
+  <span class="c-cmt">/* Modern CSS — trigger on scroll */</span>
+  <span class="c-prop">animation-timeline</span>: <span class="c-val">view()</span>;
+  <span class="c-prop">animation-range</span>: <span class="c-val">entry 0% entry 30%</span>;
+}</code></pre>
+        </div>
+
+        <p class="effect-note">↑ <code>animation-timeline: view()</code> được hỗ trợ Chrome 115+, Firefox 114+. Fallback: animation chạy khi load với delay.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ══════════════ SUMMARY TABLE ══════════════ -->
+  <section class="summary-section">
+    <div class="summary-inner">
+      <h2 class="summary-title">Tổng kết kỹ thuật</h2>
+      <div class="summary-table">
+        <div class="st-row st-head">
+          <span>#</span><span>Hiệu ứng</span><span>Thuộc tính chính</span><span>Thời lượng</span><span>Hỗ trợ</span>
+        </div>
+        <div class="st-row">
+          <span>01</span><span>Card Hover</span><span>transform · box-shadow</span><span>0.3s ease</span><span class="st-badge ok">Toàn bộ</span>
+        </div>
+        <div class="st-row">
+          <span>02</span><span>Button Hover</span><span>background-color · scale</span><span>0.25s ease</span><span class="st-badge ok">Toàn bộ</span>
+        </div>
+        <div class="st-row">
+          <span>03</span><span>Image Zoom</span><span>transform · overflow:hidden</span><span>0.4s ease-out</span><span class="st-badge ok">Toàn bộ</span>
+        </div>
+        <div class="st-row">
+          <span>04</span><span>Spinner</span><span>@keyframes spin</span><span>1s linear ∞</span><span class="st-badge ok">Toàn bộ</span>
+        </div>
+        <div class="st-row">
+          <span>05</span><span>Fade-in Scroll</span><span>@keyframes · animation-timeline</span><span>0.6s ease</span><span class="st-badge warn">Chrome 115+</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="page-footer">
+    <p>CSS Animation Reference · Thuần CSS · Không dependency</p>
+  </footer>
+
+</body>
+</html>

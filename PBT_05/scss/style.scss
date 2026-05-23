@@ -1,0 +1,260 @@
+// ════════════════════════════════════════════════════════════════
+//  style.scss — AURUM Main Entry Point
+//  Import order: variables → mixins → components → layout
+// ════════════════════════════════════════════════════════════════
+
+@use 'scss/variables' as *;
+@use 'scss/mixins'    as *;
+@use 'scss/components';
+
+// ════════════════════════════════════════════════════════════════
+//  CSS CUSTOM PROPERTIES (forwarded from SCSS vars for runtime JS)
+// ════════════════════════════════════════════════════════════════
+:root {
+  --color-bg:         #{$color-bg};
+  --color-surface:    #{$color-surface};
+  --color-border:     #{$color-border};
+  --color-text:       #{$secondary-color};
+  --color-muted:      #{$color-muted};
+  --color-accent:     #{$primary-color};
+  --color-accent-dk:  #{$primary-dark};
+  --color-badge-new:  #{$color-badge-new};
+  --color-badge-sale: #{$color-badge-sale};
+  --color-header:     #{$secondary-color};
+  --color-footer:     #{$color-footer};
+
+  --font-display:     #{$font-display};
+  --font-body:        #{$font-primary};
+
+  --radius-sm:        #{$radius-sm};
+  --radius-md:        #{$radius-md};
+  --radius-lg:        #{$radius-lg};
+
+  --shadow-card:      #{$shadow-card};
+  --shadow-hover:     #{$shadow-hover};
+
+  --header-h:         #{$header-h};
+  --transition:       #{$transition};
+}
+
+// ════════════════════════════════════════════════════════════════
+//  RESET & BASE
+// ════════════════════════════════════════════════════════════════
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: $color-bg;
+  color: $secondary-color;
+  font-family: $font-primary;
+  font-size: $font-size-base;
+  line-height: 1.6;
+
+  @include respond-to(tablet) { font-size: 15px; }
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+a    { color: inherit; text-decoration: none; }
+
+button,
+select,
+input { font-family: inherit; cursor: pointer; border: none; background: none; }
+
+// ════════════════════════════════════════════════════════════════
+//  LAYOUT WRAPPER
+// ════════════════════════════════════════════════════════════════
+.layout-wrapper {
+  max-width: $max-width;
+  margin: 0 auto;
+  padding: 0 $spacing-md 40px;
+
+  @include respond-to(tablet)  { padding: 0 24px $spacing-xl; }
+
+  @include respond-to(desktop) {
+    display: grid;
+    grid-template-columns: 240px 1fr 200px;
+    grid-template-rows: auto 1fr;
+    gap: 0 28px;
+    align-items: start;
+    padding: 28px $spacing-lg 56px;
+  }
+
+  @include respond-to(xl) {
+    grid-template-columns: 260px 1fr 220px;
+    gap: 0 36px;
+  }
+}
+
+// ════════════════════════════════════════════════════════════════
+//  SIDEBAR
+// ════════════════════════════════════════════════════════════════
+.sidebar {
+  display: none;
+
+  @include respond-to(tablet) {
+    display: block;
+    border-bottom: 1px solid $color-border;
+    padding: $spacing-md 0;
+    margin-top: $spacing-md;
+  }
+
+  @include respond-to(desktop) {
+    grid-column: 1;
+    grid-row: 1 / 3;
+    border-bottom: none;
+    padding: 0;
+    margin: 0;
+    position: sticky;
+    top: calc($header-h-desktop + 20px);
+  }
+}
+
+// ── Tablet filter bar ─────────────────────────────────────────────
+.filter-bar-tablet {
+  display: none;
+
+  @include respond-to(tablet) {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  @include respond-to(desktop) { display: none; }
+}
+
+.filter-label {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: $color-muted;
+}
+
+.dropdown-group {
+  display: flex;
+  gap: $spacing-sm;
+  flex-wrap: wrap;
+  flex: 1;
+}
+
+.filter-select {
+  padding: $spacing-sm 12px;
+  border: 1px solid $color-border;
+  border-radius: $radius-sm;
+  background: $color-surface;
+  font-size: $font-size-md;
+  color: $secondary-color;
+  outline: none;
+  transition: border-color $transition;
+
+  @include custom-select;
+  &:focus { border-color: $primary-color; }
+}
+
+.btn-apply {
+  @include btn-gold;
+  font-size: $font-size-md;
+}
+
+// ════════════════════════════════════════════════════════════════
+//  PRODUCT AREA
+// ════════════════════════════════════════════════════════════════
+.product-area {
+  padding-top: 20px;
+
+  @include respond-to(desktop) { grid-column: 2; }
+}
+
+.area-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: $spacing-md;
+  flex-wrap: wrap;
+  gap: $spacing-sm;
+}
+
+.result-count {
+  font-size: $font-size-md;
+  color: $color-muted;
+
+  strong { color: $secondary-color; }
+}
+
+.sort-select {
+  padding: 7px 10px;
+  border: 1px solid $color-border;
+  border-radius: $radius-sm;
+  background: $color-surface;
+  font-size: $font-size-md;
+  color: $secondary-color;
+  outline: none;
+  cursor: pointer;
+  transition: border-color $transition;
+
+  &:focus { border-color: $primary-color; }
+}
+
+// ════════════════════════════════════════════════════════════════
+//  PRODUCT GRID
+// ════════════════════════════════════════════════════════════════
+.product-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-md;
+
+  @include respond-to(tablet) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  @include respond-to(desktop) {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+  }
+
+  @include respond-to(xl) { gap: 22px; }
+}
+
+// ════════════════════════════════════════════════════════════════
+//  ANIMATIONS
+// ════════════════════════════════════════════════════════════════
+@keyframes cardIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+// ════════════════════════════════════════════════════════════════
+//  ACCESSIBILITY
+// ════════════════════════════════════════════════════════════════
+:focus-visible {
+  outline: 2px solid $primary-color;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: .01ms !important;
+    animation-duration: .01ms !important;
+  }
+}

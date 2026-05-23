@@ -1,0 +1,55 @@
+// ════════════════════════════════════════════════════════════════
+//  _variables.scss — AURUM Design Tokens
+// ════════════════════════════════════════════════════════════════
+
+// ── Colors ───────────────────────────────────────────────────────
+$primary-color: #c9a96e; // gold accent
+$primary-dark: #a8854a; // darker gold
+$secondary-color: #1c1814; // deep brown-black (text / header)
+$color-bg: #faf8f5;
+$color-surface: #ffffff;
+$color-border: #e8e2d9;
+$color-muted: #7a6f65;
+$color-footer: #141210;
+
+// Badge colors
+$color-badge-new: #5c7a6b;
+$color-badge-sale: #b85450;
+
+// ── Typography ───────────────────────────────────────────────────
+$font-primary: 'DM Sans', system-ui, sans-serif;
+$font-display: 'Cormorant Garamond', Georgia, serif;
+
+$font-size-base: 14px;
+$font-size-sm: 11px;
+$font-size-md: 13px;
+$font-size-lg: 17px;
+
+// ── Breakpoints ──────────────────────────────────────────────────
+$breakpoint-tablet: 768px;
+$breakpoint-desktop: 1024px;
+$breakpoint-xl: 1280px;
+
+// ── Spacing ──────────────────────────────────────────────────────
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 16px;
+$spacing-lg: 32px;
+$spacing-xl: 48px;
+
+// ── Border Radius ────────────────────────────────────────────────
+$radius-sm: 6px;
+$radius-md: 12px;
+$radius-lg: 20px;
+
+// ── Shadows ──────────────────────────────────────────────────────
+$shadow-card: 0 2px 12px rgba(28, 24, 20, .07), 0 1px 3px rgba(28, 24, 20, .05);
+$shadow-hover: 0 8px 32px rgba(28, 24, 20, .13);
+
+// ── Layout ───────────────────────────────────────────────────────
+$header-h: 60px;
+$header-h-desktop: 68px;
+$max-width: 1440px;
+
+// ── Transitions ──────────────────────────────────────────────────
+$transition: .25s cubic-bezier(.4, 0, .2, 1);

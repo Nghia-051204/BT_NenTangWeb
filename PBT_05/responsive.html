@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AURUM — Shop</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="responsive.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════════════════ HEADER ═══════════════════════════════ -->
+  <header class="site-header">
+    <div class="header-inner">
+
+      <button class="hamburger" id="hamburgerBtn" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <a href="#" class="logo">AURUM</a>
+
+      <nav class="main-nav" id="mainNav">
+        <a href="#">Trang chủ</a>
+        <a href="#">Sản phẩm</a>
+        <a href="#">Bộ sưu tập</a>
+        <a href="#">Về chúng tôi</a>
+        <a href="#">Liên hệ</a>
+      </nav>
+
+      <div class="header-actions">
+        <button class="icon-btn" aria-label="Tìm kiếm">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </button>
+        <button class="icon-btn cart-btn" aria-label="Giỏ hàng">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+          <span class="cart-badge">3</span>
+        </button>
+      </div>
+
+    </div>
+    <!-- Mobile nav overlay -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+  </header>
+
+  <!-- ═══════════════════════════════ HERO BANNER (mobile only) ═══════════ -->
+  <div class="hero-band">
+    <p>Miễn phí vận chuyển cho đơn hàng trên 500.000 ₫ &nbsp;·&nbsp; Flash Sale 30% hôm nay</p>
+  </div>
+
+  <!-- ═══════════════════════════════ MAIN LAYOUT ══════════════════════════ -->
+  <div class="layout-wrapper">
+
+    <!-- SIDEBAR (ẩn mobile, ngang tablet, dọc desktop) -->
+    <aside class="sidebar" id="sidebar">
+
+      <!-- Tablet: filter bar collapsed into dropdowns -->
+      <div class="filter-bar-tablet">
+        <span class="filter-label">Lọc:</span>
+
+        <div class="dropdown-group">
+          <select class="filter-select">
+            <option>Danh mục</option>
+            <option>Thời trang</option>
+            <option>Điện tử</option>
+            <option>Phụ kiện</option>
+          </select>
+          <select class="filter-select">
+            <option>Giá</option>
+            <option>&lt; 200k</option>
+            <option>200k – 500k</option>
+            <option>&gt; 500k</option>
+          </select>
+          <select class="filter-select">
+            <option>Màu sắc</option>
+            <option>Đen</option>
+            <option>Trắng</option>
+            <option>Nâu</option>
+          </select>
+          <select class="filter-select">
+            <option>Sắp xếp</option>
+            <option>Mới nhất</option>
+            <option>Bán chạy</option>
+            <option>Giá tăng dần</option>
+          </select>
+        </div>
+
+        <button class="btn-apply">Áp dụng</button>
+      </div>
+
+      <!-- Desktop: sidebar panel -->
+      <div class="sidebar-panel">
+
+        <h3 class="sidebar-title">Bộ lọc</h3>
+
+        <div class="filter-section">
+          <h4 class="filter-heading">Danh mục</h4>
+          <ul class="filter-list">
+            <li><label><input type="checkbox" checked /> <span>Tất cả</span></label></li>
+            <li><label><input type="checkbox" /> <span>Thời trang</span></label></li>
+            <li><label><input type="checkbox" /> <span>Điện tử</span></label></li>
+            <li><label><input type="checkbox" /> <span>Phụ kiện</span></label></li>
+            <li><label><input type="checkbox" /> <span>Túi xách</span></label></li>
+          </ul>
+        </div>
+
+        <div class="filter-section">
+          <h4 class="filter-heading">Khoảng giá</h4>
+          <div class="price-range">
+            <input type="range" min="0" max="2000" value="1200" class="range-slider" id="priceRange" />
+            <div class="price-labels">
+              <span>0 ₫</span>
+              <span id="priceVal">1.200.000 ₫</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="filter-section">
+          <h4 class="filter-heading">Màu sắc</h4>
+          <div class="color-swatches">
+            <button class="swatch active" style="--c:#1a1a1a" aria-label="Đen"></button>
+            <button class="swatch" style="--c:#f5f0eb" aria-label="Kem"></button>
+            <button class="swatch" style="--c:#8b6f47" aria-label="Nâu"></button>
+            <button class="swatch" style="--c:#c9a96e" aria-label="Vàng"></button>
+            <button class="swatch" style="--c:#5c7a6b" aria-label="Xanh lá"></button>
+            <button class="swatch" style="--c:#7a6080" aria-label="Tím"></button>
+          </div>
+        </div>
+
+        <div class="filter-section">
+          <h4 class="filter-heading">Đánh giá</h4>
+          <ul class="filter-list rating-list">
+            <li><label><input type="radio" name="rating" /> <span class="stars">★★★★★</span> <span class="rating-count">(128)</span></label></li>
+            <li><label><input type="radio" name="rating" checked /> <span class="stars">★★★★☆</span> <span class="rating-count">(94)</span></label></li>
+            <li><label><input type="radio" name="rating" /> <span class="stars">★★★☆☆</span> <span class="rating-count">(41)</span></label></li>
+          </ul>
+        </div>
+
+        <button class="btn-reset">Xóa bộ lọc</button>
+      </div>
+    </aside>
+
+    <!-- ─────────────────────────── PRODUCT GRID ─────────────────────────── -->
+    <main class="product-area">
+
+      <div class="area-header">
+        <p class="result-count"><strong>48</strong> sản phẩm</p>
+        <select class="sort-select">
+          <option>Mới nhất</option>
+          <option>Bán chạy nhất</option>
+          <option>Giá: thấp → cao</option>
+          <option>Giá: cao → thấp</option>
+        </select>
+      </div>
+
+      <div class="product-grid">
+
+        <!-- Card 1 -->
+        <article class="product-card">
+          <div class="card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&q=80" alt="Đồng hồ cổ điển" loading="lazy" />
+            <span class="badge badge-new">Mới</span>
+            <button class="wishlist-btn" aria-label="Yêu thích">♡</button>
+          </div>
+          <div class="card-body">
+            <p class="card-category">Phụ kiện</p>
+            <h3 class="card-name">Đồng hồ Cổ điển</h3>
+            <div class="card-rating">★★★★★ <span>5.0</span></div>
+            <div class="card-footer">
+              <span class="price">1.250.000 ₫</span>
+              <button class="btn-add">+ Thêm</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 2 -->
+        <article class="product-card">
+          <div class="card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=400&q=80" alt="Túi da thủ công" loading="lazy" />
+            <span class="badge badge-sale">−20%</span>
+            <button class="wishlist-btn" aria-label="Yêu thích">♡</button>
+          </div>
+          <div class="card-body">
+            <p class="card-category">Túi xách</p>
+            <h3 class="card-name">Túi Da Thủ Công</h3>
+            <div class="card-rating">★★★★☆ <span>4.8</span></div>
+            <div class="card-footer">
+              <div>
+                <span class="price">890.000 ₫</span>
+                <span class="price-old">1.120.000 ₫</span>
+              </div>
+              <button class="btn-add">+ Thêm</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 3 -->
+        <article class="product-card">
+          <div class="card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1585386959984-a4155224a1ad?w=400&q=80" alt="Nước hoa cao cấp" loading="lazy" />
+            <button class="wishlist-btn active" aria-label="Yêu thích">♥</button>
+          </div>
+          <div class="card-body">
+            <p class="card-category">Làm đẹp</p>
+            <h3 class="card-name">Nước Hoa Cao Cấp</h3>
+            <div class="card-rating">★★★★★ <span>4.9</span></div>
+            <div class="card-footer">
+              <span class="price">2.100.000 ₫</span>
+              <button class="btn-add">+ Thêm</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 4 -->
+        <article class="product-card">
+          <div class="card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?w=400&q=80" alt="Giày thể thao" loading="lazy" />
+            <span class="badge badge-sale">−30%</span>
+            <button class="wishlist-btn" aria-label="Yêu thích">♡</button>
+          </div>
+          <div class="card-body">
+            <p class="card-category">Thời trang</p>
+            <h3 class="card-name">Giày Thể Thao</h3>
+            <div class="card-rating">★★★★☆ <span>4.6</span></div>
+            <div class="card-footer">
+              <div>
+                <span class="price">650.000 ₫</span>
+                <span class="price-old">920.000 ₫</span>
+              </div>
+              <button class="btn-add">+ Thêm</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 5 -->
+        <article class="product-card">
+          <div class="card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=400&q=80" alt="Máy chụp ảnh" loading="lazy" />
+            <span class="badge badge-new">Mới</span>
+            <button class="wishlist-btn" aria-label="Yêu thích">♡</button>
+          </div>
+          <div class="card-body">
+            <p class="card-category">Điện tử</p>
+            <h3 class="card-name">Máy Chụp Ảnh</h3>
+            <div class="card-rating">★★★★★ <span>5.0</span></div>
+            <div class="card-footer">
+              <span class="price">8.500.000 ₫</span>
+              <button class="btn-add">+ Thêm</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 6 -->
+        <article class="product-card">
+          <div class="card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=400&q=80" alt="Laptop mỏng nhẹ" loading="lazy" />
+            <button class="wishlist-btn" aria-label="Yêu thích">♡</button>
+          </div>
+          <div class="card-body">
+            <p class="card-category">Điện tử</p>
+            <h3 class="card-name">Laptop Mỏng Nhẹ</h3>
+            <div class="card-rating">★★★★☆ <span>4.7</span></div>
+            <div class="card-footer">
+              <span class="price">22.000.000 ₫</span>
+              <button class="btn-add">+ Thêm</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 7 -->
+        <article class="product-card">
+          <div class="card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=400&q=80" alt="Kính mắt thời trang" loading="lazy" />
+            <span class="badge badge-sale">−15%</span>
+            <button class="wishlist-btn" aria-label="Yêu thích">♡</button>
+          </div>
+          <div class="card-body">
+            <p class="card-category">Phụ kiện</p>
+            <h3 class="card-name">Kính Mắt Thời Trang</h3>
+            <div class="card-rating">★★★★☆ <span>4.5</span></div>
+            <div class="card-footer">
+              <div>
+                <span class="price">420.000 ₫</span>
+                <span class="price-old">490.000 ₫</span>
+              </div>
+              <button class="btn-add">+ Thêm</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 8 -->
+        <article class="product-card">
+          <div class="card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1600369671738-5b864f5ae476?w=400&q=80" alt="Nến thơm cao cấp" loading="lazy" />
+            <span class="badge badge-new">Mới</span>
+            <button class="wishlist-btn" aria-label="Yêu thích">♡</button>
+          </div>
+          <div class="card-body">
+            <p class="card-category">Gia dụng</p>
+            <h3 class="card-name">Nến Thơm Cao Cấp</h3>
+            <div class="card-rating">★★★★★ <span>4.9</span></div>
+            <div class="card-footer">
+              <span class="price">380.000 ₫</span>
+              <button class="btn-add">+ Thêm</button>
+            </div>
+          </div>
+        </article>
+
+      </div><!-- /product-grid -->
+
+      <!-- Pagination -->
+      <nav class="pagination" aria-label="Phân trang">
+        <button class="page-btn" disabled>‹</button>
+        <button class="page-btn active">1</button>
+        <button class="page-btn">2</button>
+        <button class="page-btn">3</button>
+        <span class="page-dots">…</span>
+        <button class="page-btn">6</button>
+        <button class="page-btn">›</button>
+      </nav>
+
+    </main><!-- /product-area -->
+
+    <!-- ─────────────────────────── ADS BAR (desktop only) ───────────────── -->
+    <aside class="ads-bar">
+      <div class="ads-card ads-promo">
+        <p class="ads-eyebrow">Flash Sale</p>
+        <p class="ads-title">30% OFF</p>
+        <p class="ads-sub">Hôm nay duy nhất</p>
+        <button class="ads-cta">Mua ngay</button>
+      </div>
+
+      <div class="ads-card ads-banner">
+        <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=300&q=80" alt="Banner quảng cáo" />
+        <div class="ads-overlay">
+          <p>Bộ sưu tập mới 2025</p>
+        </div>
+      </div>
+
+      <div class="ads-card ads-text">
+        <p class="ads-eyebrow">Gợi ý hôm nay</p>
+        <ul class="ads-list">
+          <li>🕶 Kính UV400</li>
+          <li>👜 Túi canvas mới</li>
+          <li>⌚ Đồng hồ lắp ghép</li>
+        </ul>
+      </div>
+    </aside>
+
+  </div><!-- /layout-wrapper -->
+
+  <!-- ═══════════════════════════════ FOOTER ════════════════════════════════ -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+
+      <div class="footer-brand">
+        <p class="footer-logo">AURUM</p>
+        <p class="footer-tagline">Tinh tế trong từng chi tiết.</p>
+        <div class="social-links">
+          <a href="#" aria-label="Instagram">In</a>
+          <a href="#" aria-label="Facebook">Fb</a>
+          <a href="#" aria-label="TikTok">Tk</a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h5>Công ty</h5>
+        <a href="#">Về AURUM</a>
+        <a href="#">Tuyển dụng</a>
+        <a href="#">Blog</a>
+        <a href="#">Báo chí</a>
+      </div>
+
+      <div class="footer-col">
+        <h5>Hỗ trợ</h5>
+        <a href="#">Câu hỏi thường gặp</a>
+        <a href="#">Chính sách đổi trả</a>
+        <a href="#">Vận chuyển</a>
+        <a href="#">Liên hệ</a>
+      </div>
+
+      <div class="footer-col footer-newsletter">
+        <h5>Nhận ưu đãi</h5>
+        <p>Đăng ký nhận thông tin khuyến mãi độc quyền.</p>
+        <div class="newsletter-form">
+          <input type="email" placeholder="email@example.com" />
+          <button>→</button>
+        </div>
+      </div>
+
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 AURUM. Bảo lưu mọi quyền.</p>
+      <p><a href="#">Điều khoản</a> · <a href="#">Quyền riêng tư</a></p>
+    </div>
+  </footer>
+
+  <script>
+    // Hamburger toggle
+    const btn = document.getElementById('hamburgerBtn');
+    const nav = document.getElementById('mainNav');
+    const overlay = document.getElementById('mobileOverlay');
+
+    function toggleMenu(open) {
+      btn.setAttribute('aria-expanded', open);
+      btn.classList.toggle('open', open);
+      nav.classList.toggle('open', open);
+      overlay.classList.toggle('visible', open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    }
+
+    btn.addEventListener('click', () => {
+      const isOpen = btn.getAttribute('aria-expanded') === 'true';
+      toggleMenu(!isOpen);
+    });
+    overlay.addEventListener('click', () => toggleMenu(false));
+
+    // Price range
+    const range = document.getElementById('priceRange');
+    const priceVal = document.getElementById('priceVal');
+    if (range) {
+      range.addEventListener('input', () => {
+        priceVal.textContent = Number(range.value).toLocaleString('vi-VN') + ' ₫';
+      });
+    }
+
+    // Color swatches
+    document.querySelectorAll('.swatch').forEach(sw => {
+      sw.addEventListener('click', () => {
+        sw.closest('.color-swatches').querySelectorAll('.swatch').forEach(s => s.classList.remove('active'));
+        sw.classList.add('active');
+      });
+    });
+
+    // Wishlist toggle
+    document.querySelectorAll('.wishlist-btn').forEach(b => {
+      b.addEventListener('click', () => {
+        b.classList.toggle('active');
+        b.textContent = b.classList.contains('active') ? '♥' : '♡';
+      });
+    });
+
+    // Card add animation
+    document.querySelectorAll('.btn-add').forEach(b => {
+      b.addEventListener('click', () => {
+        b.textContent = '✓ Đã thêm';
+        b.classList.add('added');
+        setTimeout(() => { b.textContent = '+ Thêm'; b.classList.remove('added'); }, 1500);
+      });
+    });
+  </script>
+
+</body>
+</html>
