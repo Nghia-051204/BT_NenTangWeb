@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Quản Lý Sinh Viên</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <div class="logo">
+      <div class="logo-icon">🎓</div>
+      <div>
+        <span class="logo-text">EduManager</span>
+        <span class="logo-sub">Hệ thống quản lý sinh viên</span>
+      </div>
+    </div>
+
+    <span class="header-badge" id="semester-badge">
+      Học kỳ 2 — 2024–2025
+    </span>
+  </div>
+</header>
+
+<div class="page">
+
+  <!-- STATS -->
+  <div class="stats-row" id="stats-row">
+    <div class="stat-card blue">
+      <div class="stat-label">Tổng sinh viên</div>
+      <div class="stat-value blue" id="stat-total">0</div>
+      <div class="stat-desc">đang theo học</div>
+    </div>
+
+    <div class="stat-card teal">
+      <div class="stat-label">Điểm TB lớp</div>
+      <div class="stat-value teal" id="stat-avg">—</div>
+      <div class="stat-desc">trung bình chung</div>
+    </div>
+
+    <div class="stat-card green">
+      <div class="stat-label">Giỏi / Xuất sắc</div>
+      <div class="stat-value green" id="stat-good">0</div>
+      <div class="stat-desc">GPA ≥ 3.2 (≥ 8.0)</div>
+    </div>
+
+    <div class="stat-card amber">
+      <div class="stat-label">Cần cải thiện</div>
+      <div class="stat-value amber" id="stat-weak">0</div>
+      <div class="stat-desc">GPA &lt; 5.0</div>
+    </div>
+  </div>
+
+  <!-- TOOLBAR -->
+  <div class="toolbar">
+
+    <div class="search-wrap">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <circle cx="11" cy="11" r="8"/>
+        <path d="m21 21-4.35-4.35"/>
+      </svg>
+
+      <input
+        id="search-input"
+        class="search-input"
+        type="text"
+        placeholder="Tìm theo tên, mã SV, email…"
+      >
+    </div>
+
+    <select id="filter-class" class="filter-select">
+      <option value="">Tất cả lớp</option>
+    </select>
+
+    <select id="filter-gpa" class="filter-select">
+      <option value="">Tất cả xếp loại</option>
+      <option value="excellent">Xuất sắc (≥ 9.0)</option>
+      <option value="good">Giỏi (8.0–8.9)</option>
+      <option value="fair">Khá (6.5–7.9)</option>
+      <option value="average">Trung bình (5.0–6.4)</option>
+      <option value="poor">Yếu (&lt; 5.0)</option>
+    </select>
+
+    <button class="btn btn-primary" id="btn-add">
+      <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+        <path d="M12 5v14M5 12h14"/>
+      </svg>
+
+      Thêm sinh viên
+    </button>
+  </div>
+
+  <!-- TABLE -->
+  <div class="table-card">
+
+    <div class="table-header">
+      <div class="table-title">
+        Danh sách sinh viên
+        <span class="count-badge" id="table-count">0</span>
+      </div>
+
+      <div style="font-size:0.78rem; color:var(--text-3)" id="page-info"></div>
+    </div>
+
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:50px">#</th>
+
+            <th class="sort-col" data-col="msv">
+              Mã SV
+              <span class="sort-icon">↕</span>
+            </th>
+
+            <th class="sort-col" data-col="name">
+              Họ và tên
+              <span class="sort-icon">↕</span>
+            </th>
+
+            <th>Ngày sinh</th>
+
+            <th class="sort-col" data-col="class">
+              Lớp
+              <span class="sort-icon">↕</span>
+            </th>
+
+            <th class="sort-col" data-col="gpa">
+              Điểm TB
+              <span class="sort-icon">↕</span>
+            </th>
+
+            <th>Email</th>
+
+            <th style="width:130px; text-align:center">
+              Thao tác
+            </th>
+          </tr>
+        </thead>
+
+        <tbody id="student-tbody"></tbody>
+      </table>
+    </div>
+
+    <div class="pagination" id="pagination" style="display:none">
+      <span id="pagination-info"></span>
+
+      <div class="page-btns" id="page-btns"></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="modal-backdrop" id="modal-backdrop">
+
+  <div class="modal">
+
+    <div class="modal-head">
+
+      <div class="modal-head-text">
+        <div class="modal-title" id="modal-title">
+          Thêm sinh viên mới
+        </div>
+
+        <div class="modal-subtitle" id="modal-subtitle">
+          Nhập thông tin sinh viên bên dưới
+        </div>
+      </div>
+
+      <button class="modal-close" id="modal-close">
+        ✕
+      </button>
+
+    </div>
+
+    <div class="modal-body">
+
+      <form id="student-form" novalidate>
+
+        <div class="form-grid">
+
+          <div class="form-group">
+            <label class="form-label" for="f-msv">
+              Mã sinh viên *
+            </label>
+
+            <input
+              class="form-input"
+              id="f-msv"
+              type="text"
+              placeholder="VD: SV2024001"
+            >
+
+            <span class="form-error" id="e-msv"></span>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="f-dob">
+              Ngày sinh
+            </label>
+
+            <input class="form-input" id="f-dob" type="date">
+          </div>
+
+          <div class="form-group full">
+            <label class="form-label" for="f-name">
+              Họ và tên *
+            </label>
+
+            <input
+              class="form-input"
+              id="f-name"
+              type="text"
+              placeholder="VD: Nguyễn Văn An"
+            >
+
+            <span class="form-error" id="e-name"></span>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="f-class">
+              Lớp học *
+            </label>
+
+            <input
+              class="form-input"
+              id="f-class"
+              type="text"
+              placeholder="VD: CNTT2024A"
+            >
+
+            <span class="form-error" id="e-class"></span>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="f-gpa">
+              Điểm trung bình *
+            </label>
+
+            <input
+              class="form-input"
+              id="f-gpa"
+              type="number"
+              min="0"
+              max="10"
+              step="0.1"
+              placeholder="0.0 – 10.0"
+            >
+
+            <span class="form-error" id="e-gpa"></span>
+          </div>
+
+          <div class="form-group full">
+            <label class="form-label" for="f-email">
+              Email
+            </label>
+
+            <input
+              class="form-input"
+              id="f-email"
+              type="email"
+              placeholder="VD: nguyenvanan@email.com"
+            >
+
+            <span class="form-error" id="e-email"></span>
+          </div>
+
+        </div>
+
+      </form>
+
+    </div>
+
+    <div class="modal-foot">
+
+      <button class="btn btn-ghost" id="btn-cancel">
+        Hủy bỏ
+      </button>
+
+      <button class="btn btn-save btn-primary" id="btn-save">
+        Lưu sinh viên
+      </button>
+
+    </div>
+
+  </div>
+</div>
+
+<!-- CONFIRM -->
+<div class="confirm-backdrop" id="confirm-backdrop">
+
+  <div class="confirm-box">
+
+    <div class="confirm-icon">🗑️</div>
+
+    <div class="confirm-title">
+      Xác nhận xóa sinh viên
+    </div>
+
+    <div class="confirm-msg" id="confirm-msg">
+      Bạn có chắc muốn xóa sinh viên này không?
+    </div>
+
+    <div class="confirm-actions">
+
+      <button class="btn btn-cancel" id="confirm-cancel">
+        Hủy bỏ
+      </button>
+
+      <button class="btn btn-danger" id="confirm-ok">
+        Xóa ngay
+      </button>
+
+    </div>
+
+  </div>
+</div>
+
+<!-- TOAST -->
+<div id="toast-container"></div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
