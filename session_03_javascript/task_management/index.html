@@ -51,7 +51,6 @@
     <!-- Task list -->
     <main class="task-area">
       <div id="task-list" class="task-list" role="list"></div>
-      <!-- Empty state -->
       <div id="empty-state" class="empty-state" hidden>
         <div class="empty-icon">◎</div>
         <p class="empty-title">Chưa có công việc nào</p>
@@ -59,7 +58,7 @@
       </div>
     </main>
 
-  </div><!-- end app-wrapper -->
+  </div>
 
   <!-- Overlay -->
   <div id="overlay" class="overlay" aria-hidden="true"></div>
@@ -71,39 +70,82 @@
       <button id="btn-close-form" class="btn-close" aria-label="Đóng form">✕</button>
     </div>
 
-    <form id="task-form" novalidate>
+    <form id="task-form" novalidate autocomplete="off">
       <input type="hidden" id="edit-id" />
 
-      <div class="form-group">
-        <label for="field-title">Tiêu đề <span class="required">*</span></label>
-        <input type="text" id="field-title" placeholder="VD: Hoàn thành báo cáo tuần" maxlength="100" required />
-        <span class="field-error" id="err-title"></span>
+      <!-- Tiêu đề -->
+      <div class="form-group" id="group-title">
+        <label for="field-title">
+          Tiêu đề <span class="required">*</span>
+        </label>
+        <div class="input-wrap">
+          <input
+            type="text"
+            id="field-title"
+            placeholder="VD: Hoàn thành báo cáo tuần"
+            maxlength="100"
+          />
+          <span class="input-icon" id="icon-title"></span>
+        </div>
+        <div class="field-footer">
+          <span class="field-error" id="err-title" role="alert"></span>
+          <span class="char-count" id="count-title">0 / 100</span>
+        </div>
       </div>
 
-      <div class="form-group">
+      <!-- Mô tả -->
+      <div class="form-group" id="group-desc">
         <label for="field-desc">Mô tả ngắn</label>
-        <textarea id="field-desc" placeholder="Thêm ghi chú hoặc mô tả..." rows="3" maxlength="300"></textarea>
+        <div class="input-wrap">
+          <textarea
+            id="field-desc"
+            placeholder="Thêm ghi chú hoặc mô tả chi tiết…"
+            rows="3"
+            maxlength="300"
+          ></textarea>
+        </div>
+        <div class="field-footer">
+          <span class="field-error" id="err-desc" role="alert"></span>
+          <span class="char-count" id="count-desc">0 / 300</span>
+        </div>
       </div>
 
+      <!-- Hạn + Ưu tiên -->
       <div class="form-row">
-        <div class="form-group">
+        <div class="form-group" id="group-due">
           <label for="field-due">Hạn hoàn thành</label>
-          <input type="date" id="field-due" />
+          <div class="input-wrap">
+            <input type="date" id="field-due" />
+            <span class="input-icon" id="icon-due"></span>
+          </div>
+          <div class="field-footer">
+            <span class="field-error" id="err-due" role="alert"></span>
+            <span class="field-hint" id="hint-due"></span>
+          </div>
         </div>
 
-        <div class="form-group">
-          <label for="field-priority">Mức ưu tiên</label>
-          <select id="field-priority">
-            <option value="low">🟢 Thấp</option>
-            <option value="medium" selected>🟡 Trung bình</option>
-            <option value="high">🔴 Cao</option>
-          </select>
+        <div class="form-group" id="group-priority">
+          <label for="field-priority">Mức ưu tiên <span class="required">*</span></label>
+          <div class="input-wrap">
+            <select id="field-priority">
+              <option value="">— Chọn mức ưu tiên —</option>
+              <option value="low">🟢 Thấp</option>
+              <option value="medium">🟡 Trung bình</option>
+              <option value="high">🔴 Cao</option>
+            </select>
+            <span class="input-icon" id="icon-priority"></span>
+          </div>
+          <div class="field-footer">
+            <span class="field-error" id="err-priority" role="alert"></span>
+          </div>
         </div>
       </div>
 
       <div class="dialog-actions">
         <button type="button" id="btn-cancel" class="btn-secondary">Hủy</button>
-        <button type="submit" id="btn-submit" class="btn-primary">Lưu công việc</button>
+        <button type="submit" id="btn-submit" class="btn-primary">
+          <span id="btn-submit-text">Lưu công việc</span>
+        </button>
       </div>
     </form>
   </dialog>
@@ -112,7 +154,7 @@
   <dialog id="confirm-dialog" class="confirm-dialog" aria-modal="true" aria-labelledby="confirm-title">
     <div class="confirm-icon">⚠</div>
     <h3 id="confirm-title">Xác nhận xóa</h3>
-    <p id="confirm-msg">Bạn có chắc muốn xóa công việc này không? Hành động này không thể hoàn tác.</p>
+    <p id="confirm-msg">Bạn có chắc muốn xóa công việc này không?</p>
     <div class="dialog-actions">
       <button id="btn-confirm-cancel" class="btn-secondary">Hủy</button>
       <button id="btn-confirm-ok" class="btn-danger">Xóa</button>
