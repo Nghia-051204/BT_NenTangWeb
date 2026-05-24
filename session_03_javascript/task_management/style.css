@@ -1,0 +1,868 @@
+/* ============================================================
+   CSS Variables & Reset
+   ============================================================ */
+:root {
+    --bg-base: #0e0f14;
+    --bg-surface: #16181f;
+    --bg-card: #1c1f2a;
+    --bg-card-done: #141a14;
+    --bg-input: #21242f;
+    --bg-overlay: rgba(8, 9, 14, 0.78);
+
+    --border: rgba(255, 255, 255, 0.07);
+    --border-focus: rgba(245, 190, 60, 0.55);
+
+    --accent: #f5be3c;
+    --accent-dim: rgba(245, 190, 60, 0.15);
+    --accent-hover: #ffd05c;
+
+    --green: #46c98a;
+    --green-dim: rgba(70, 201, 138, 0.13);
+    --red: #f05e5e;
+    --red-dim: rgba(240, 94, 94, 0.13);
+    --orange: #f5884e;
+
+    --text-primary: #f0f1f5;
+    --text-secondary: #8a8fa8;
+    --text-muted: #555b72;
+    --text-done: #555b72;
+
+    --priority-low: #46c98a;
+    --priority-medium: #f5be3c;
+    --priority-high: #f05e5e;
+
+    --radius-sm: 6px;
+    --radius-md: 12px;
+    --radius-lg: 18px;
+    --radius-xl: 24px;
+
+    --shadow-card: 0 2px 16px rgba(0, 0, 0, 0.4);
+    --shadow-dialog: 0 24px 64px rgba(0, 0, 0, 0.7);
+
+    --font-display: 'Syne', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
+
+    --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--bg-base);
+    color: var(--text-primary);
+    min-height: 100vh;
+    line-height: 1.6;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ============================================================
+   App Layout
+   ============================================================ */
+.app-wrapper {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 20px 80px;
+}
+
+/* ============================================================
+   Header
+   ============================================================ */
+.app-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: linear-gradient(to bottom, var(--bg-base) 80%, transparent);
+    padding: 28px 0 16px;
+}
+
+.header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.logo-block {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-icon {
+    font-size: 26px;
+    color: var(--accent);
+    line-height: 1;
+    animation: spin-slow 12s linear infinite;
+}
+
+@keyframes spin-slow {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.app-title {
+    font-family: var(--font-display);
+    font-size: 26px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    color: var(--text-primary);
+}
+
+.btn-add {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--accent);
+    color: #0e0f14;
+    border: none;
+    border-radius: var(--radius-md);
+    padding: 10px 20px;
+    font-family: var(--font-display);
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+    box-shadow: 0 4px 20px rgba(245, 190, 60, 0.3);
+    white-space: nowrap;
+}
+
+.btn-add:hover {
+    background: var(--accent-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 28px rgba(245, 190, 60, 0.45);
+}
+
+.btn-add:active {
+    transform: translateY(0);
+}
+
+.btn-add-icon {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1;
+}
+
+/* ============================================================
+   Stats Bar
+   ============================================================ */
+.stats-bar {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 20px 28px;
+    margin-bottom: 28px;
+    overflow: hidden;
+}
+
+.stat-card {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.stat-divider {
+    width: 1px;
+    height: 40px;
+    background: var(--border);
+}
+
+.stat-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+.stat-value {
+    font-family: var(--font-display);
+    font-size: 36px;
+    font-weight: 800;
+    line-height: 1;
+    color: var(--text-primary);
+    transition: color var(--transition);
+}
+
+.accent-done .stat-value {
+    color: var(--green);
+}
+
+.accent-pending .stat-value {
+    color: var(--accent);
+}
+
+/* ============================================================
+   Task Area
+   ============================================================ */
+.task-area {
+    position: relative;
+}
+
+.task-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* ============================================================
+   Task Card
+   ============================================================ */
+.task-card {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 0 16px;
+    align-items: start;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 18px 20px;
+    transition: border-color var(--transition), box-shadow var(--transition), opacity var(--transition);
+    animation: card-in 0.28s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes card-in {
+    from {
+        opacity: 0;
+        transform: translateY(14px) scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+.task-card:hover {
+    border-color: rgba(255, 255, 255, 0.13);
+    box-shadow: var(--shadow-card);
+}
+
+.task-card.is-done {
+    background: var(--bg-card-done);
+    opacity: 0.72;
+}
+
+.task-card.is-done:hover {
+    opacity: 0.9;
+}
+
+/* Checkbox */
+.task-checkbox-wrap {
+    padding-top: 2px;
+}
+
+.task-checkbox {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--text-muted);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all var(--transition);
+    position: relative;
+    flex-shrink: 0;
+    display: block;
+}
+
+.task-checkbox:hover {
+    border-color: var(--accent);
+}
+
+.task-checkbox:checked {
+    background: var(--green);
+    border-color: var(--green);
+}
+
+.task-checkbox:checked::after {
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 2px;
+    width: 6px;
+    height: 10px;
+    border: 2px solid #0e0f14;
+    border-top: none;
+    border-left: none;
+    transform: rotate(45deg);
+}
+
+/* Card body */
+.task-body {
+    min-width: 0;
+}
+
+.task-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+    flex-wrap: wrap;
+}
+
+.task-title {
+    font-family: var(--font-display);
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-primary);
+    word-break: break-word;
+    transition: color var(--transition), text-decoration var(--transition);
+}
+
+.is-done .task-title {
+    text-decoration: line-through;
+    color: var(--text-done);
+}
+
+.task-desc {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-bottom: 10px;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+.is-done .task-desc {
+    color: var(--text-muted);
+}
+
+.task-footer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+/* Priority badge */
+.badge-priority {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 3px 9px;
+    border-radius: 20px;
+}
+
+.badge-priority.low {
+    color: var(--priority-low);
+    background: rgba(70, 201, 138, 0.12);
+}
+
+.badge-priority.medium {
+    color: var(--priority-medium);
+    background: rgba(245, 190, 60, 0.12);
+}
+
+.badge-priority.high {
+    color: var(--priority-high);
+    background: rgba(240, 94, 94, 0.12);
+}
+
+/* Due date */
+.badge-due {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+.badge-due.overdue {
+    color: var(--red);
+}
+
+.badge-due.today {
+    color: var(--orange);
+}
+
+/* Done badge */
+.badge-done {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 3px 9px;
+    border-radius: 20px;
+    color: var(--green);
+    background: var(--green-dim);
+}
+
+/* Card actions */
+.task-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.btn-icon {
+    width: 32px;
+    height: 32px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: transparent;
+    color: var(--text-secondary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    transition: all var(--transition);
+}
+
+.btn-icon:hover {
+    border-color: rgba(255, 255, 255, 0.18);
+}
+
+.btn-icon.edit:hover {
+    color: var(--accent);
+    border-color: rgba(245, 190, 60, 0.4);
+    background: var(--accent-dim);
+}
+
+.btn-icon.delete:hover {
+    color: var(--red);
+    border-color: rgba(240, 94, 94, 0.4);
+    background: var(--red-dim);
+}
+
+/* ============================================================
+   Empty State
+   ============================================================ */
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 24px;
+    text-align: center;
+}
+
+.empty-icon {
+    font-size: 56px;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+    animation: pulse 3s ease-in-out infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 0.4;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.8;
+        transform: scale(1.08);
+    }
+}
+
+.empty-title {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+}
+
+.empty-sub {
+    font-size: 14px;
+    color: var(--text-muted);
+}
+
+/* ============================================================
+   Overlay
+   ============================================================ */
+.overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: var(--bg-overlay);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    z-index: 40;
+}
+
+.overlay.active {
+    display: block;
+    animation: fade-in 0.2s ease;
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* ============================================================
+   Task Dialog (Popup Form)
+   ============================================================ */
+.task-dialog {
+    display: none;
+    position: fixed;
+    inset: 0;
+    margin: auto;
+    width: min(520px, calc(100vw - 32px));
+    max-height: calc(100vh - 48px);
+    overflow-y: auto;
+    background: var(--bg-surface);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-xl);
+    padding: 32px;
+    z-index: 50;
+    box-shadow: var(--shadow-dialog);
+    animation: dialog-in 0.28s cubic-bezier(0.34, 1.3, 0.64, 1) both;
+}
+
+@keyframes dialog-in {
+    from {
+        opacity: 0;
+        transform: translateY(-20px) scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+.task-dialog.open {
+    display: block;
+}
+
+.dialog-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 28px;
+}
+
+.dialog-header h2 {
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--text-primary);
+}
+
+.btn-close {
+    width: 32px;
+    height: 32px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: transparent;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition);
+}
+
+.btn-close:hover {
+    color: var(--text-primary);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* ============================================================
+   Form Elements
+   ============================================================ */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    margin-bottom: 18px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    letter-spacing: 0.02em;
+}
+
+.required {
+    color: var(--accent);
+}
+
+input[type="text"],
+input[type="date"],
+textarea,
+select {
+    width: 100%;
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 10px 13px;
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: 14px;
+    outline: none;
+    transition: border-color var(--transition), box-shadow var(--transition);
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+input[type="text"]:focus,
+input[type="date"]:focus,
+textarea:focus,
+select:focus {
+    border-color: var(--border-focus);
+    box-shadow: 0 0 0 3px rgba(245, 190, 60, 0.1);
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: var(--text-muted);
+}
+
+textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238a8fa8' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 13px center;
+    padding-right: 36px;
+    cursor: pointer;
+}
+
+select option {
+    background: var(--bg-input);
+}
+
+.field-error {
+    font-size: 12px;
+    color: var(--red);
+    min-height: 16px;
+    display: block;
+}
+
+/* ============================================================
+   Dialog Actions
+   ============================================================ */
+.dialog-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 24px;
+}
+
+.btn-primary {
+    background: var(--accent);
+    color: #0e0f14;
+    border: none;
+    border-radius: var(--radius-sm);
+    padding: 10px 24px;
+    font-family: var(--font-display);
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background var(--transition), transform var(--transition);
+}
+
+.btn-primary:hover {
+    background: var(--accent-hover);
+    transform: translateY(-1px);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--text-secondary);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 10px 20px;
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--transition);
+}
+
+.btn-secondary:hover {
+    color: var(--text-primary);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.btn-danger {
+    background: var(--red);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius-sm);
+    padding: 10px 24px;
+    font-family: var(--font-display);
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--transition);
+}
+
+.btn-danger:hover {
+    background: #e84444;
+    transform: translateY(-1px);
+}
+
+/* ============================================================
+   Confirm Dialog
+   ============================================================ */
+.confirm-dialog {
+    display: none;
+    position: fixed;
+    inset: 0;
+    margin: auto;
+    width: min(400px, calc(100vw - 32px));
+    height: fit-content;
+    background: var(--bg-surface);
+    border: 1px solid rgba(240, 94, 94, 0.25);
+    border-radius: var(--radius-xl);
+    padding: 36px 32px 28px;
+    z-index: 60;
+    text-align: center;
+    box-shadow: var(--shadow-dialog);
+    animation: dialog-in 0.22s ease both;
+}
+
+.confirm-dialog.open {
+    display: block;
+}
+
+.confirm-icon {
+    font-size: 40px;
+    color: var(--red);
+    margin-bottom: 16px;
+}
+
+.confirm-dialog h3 {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 800;
+    margin-bottom: 10px;
+}
+
+.confirm-dialog p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* ============================================================
+   Toast
+   ============================================================ */
+.toast {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    z-index: 100;
+    min-width: 240px;
+    max-width: 340px;
+    padding: 14px 20px;
+    border-radius: var(--radius-md);
+    font-size: 14px;
+    font-weight: 500;
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: none;
+}
+
+.toast.success {
+    background: var(--green-dim);
+    border: 1px solid rgba(70, 201, 138, 0.3);
+    color: var(--green);
+}
+
+.toast.error {
+    background: var(--red-dim);
+    border: 1px solid rgba(240, 94, 94, 0.3);
+    color: var(--red);
+}
+
+/* ============================================================
+   Scrollbar
+   ============================================================ */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.18);
+}
+
+/* ============================================================
+   Responsive
+   ============================================================ */
+@media (max-width: 560px) {
+    .stats-bar {
+        padding: 16px;
+    }
+
+    .stat-value {
+        font-size: 28px;
+    }
+
+    .app-title {
+        font-size: 20px;
+    }
+
+    .btn-add span:last-child {
+        display: none;
+    }
+
+    .btn-add {
+        padding: 10px 14px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .task-dialog,
+    .confirm-dialog {
+        padding: 24px 20px;
+    }
+}

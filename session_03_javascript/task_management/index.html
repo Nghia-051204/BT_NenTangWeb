@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TaskFlow — Quản lý công việc</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Toast notification -->
+  <div id="toast" class="toast" aria-live="polite"></div>
+
+  <!-- App wrapper -->
+  <div class="app-wrapper">
+
+    <!-- Header -->
+    <header class="app-header">
+      <div class="header-inner">
+        <div class="logo-block">
+          <span class="logo-icon">⬡</span>
+          <h1 class="app-title">TaskFlow</h1>
+        </div>
+        <button id="btn-open-form" class="btn-add" aria-label="Thêm công việc mới">
+          <span class="btn-add-icon">+</span>
+          <span>Thêm công việc</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Stats bar -->
+    <section class="stats-bar" aria-label="Thống kê công việc">
+      <div class="stat-card">
+        <span class="stat-label">Tổng cộng</span>
+        <span class="stat-value" id="stat-total">0</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-card accent-done">
+        <span class="stat-label">Hoàn thành</span>
+        <span class="stat-value" id="stat-done">0</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-card accent-pending">
+        <span class="stat-label">Chưa xong</span>
+        <span class="stat-value" id="stat-pending">0</span>
+      </div>
+    </section>
+
+    <!-- Task list -->
+    <main class="task-area">
+      <div id="task-list" class="task-list" role="list"></div>
+      <!-- Empty state -->
+      <div id="empty-state" class="empty-state" hidden>
+        <div class="empty-icon">◎</div>
+        <p class="empty-title">Chưa có công việc nào</p>
+        <p class="empty-sub">Nhấn <strong>Thêm công việc</strong> để bắt đầu.</p>
+      </div>
+    </main>
+
+  </div><!-- end app-wrapper -->
+
+  <!-- Overlay -->
+  <div id="overlay" class="overlay" aria-hidden="true"></div>
+
+  <!-- Popup form -->
+  <dialog id="task-dialog" class="task-dialog" aria-modal="true" aria-labelledby="dialog-title">
+    <div class="dialog-header">
+      <h2 id="dialog-title">Thêm công việc</h2>
+      <button id="btn-close-form" class="btn-close" aria-label="Đóng form">✕</button>
+    </div>
+
+    <form id="task-form" novalidate>
+      <input type="hidden" id="edit-id" />
+
+      <div class="form-group">
+        <label for="field-title">Tiêu đề <span class="required">*</span></label>
+        <input type="text" id="field-title" placeholder="VD: Hoàn thành báo cáo tuần" maxlength="100" required />
+        <span class="field-error" id="err-title"></span>
+      </div>
+
+      <div class="form-group">
+        <label for="field-desc">Mô tả ngắn</label>
+        <textarea id="field-desc" placeholder="Thêm ghi chú hoặc mô tả..." rows="3" maxlength="300"></textarea>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="field-due">Hạn hoàn thành</label>
+          <input type="date" id="field-due" />
+        </div>
+
+        <div class="form-group">
+          <label for="field-priority">Mức ưu tiên</label>
+          <select id="field-priority">
+            <option value="low">🟢 Thấp</option>
+            <option value="medium" selected>🟡 Trung bình</option>
+            <option value="high">🔴 Cao</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="dialog-actions">
+        <button type="button" id="btn-cancel" class="btn-secondary">Hủy</button>
+        <button type="submit" id="btn-submit" class="btn-primary">Lưu công việc</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- Delete confirmation dialog -->
+  <dialog id="confirm-dialog" class="confirm-dialog" aria-modal="true" aria-labelledby="confirm-title">
+    <div class="confirm-icon">⚠</div>
+    <h3 id="confirm-title">Xác nhận xóa</h3>
+    <p id="confirm-msg">Bạn có chắc muốn xóa công việc này không? Hành động này không thể hoàn tác.</p>
+    <div class="dialog-actions">
+      <button id="btn-confirm-cancel" class="btn-secondary">Hủy</button>
+      <button id="btn-confirm-ok" class="btn-danger">Xóa</button>
+    </div>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>
