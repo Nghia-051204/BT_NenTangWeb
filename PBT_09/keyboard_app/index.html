@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keyboard Navigation App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="app-container">
+        <header class="app-header">
+            <h1>Hệ thống Trực quan hóa Điều hướng Bàn phím</h1>
+            <div class="shortcuts-guide" role="note" aria-label="Hướng dẫn phím tắt">
+                <span class="badge">Tab</span> Di chuyển • 
+                <span class="badge">Ctrl + K</span> Mở Command Palette • 
+                <span class="badge">1 - 9</span> Xem nhanh ảnh • 
+                <span class="badge">Space</span> Chạy/Dừng tự động • 
+                <span class="badge">Esc</span> Đóng hộp thoại
+            </div>
+            <div id="slideshowStatus" class="slideshow-indicator" aria-live="polite">
+                Trạng thái Slideshow: Đang tắt
+            </div>
+        </header>
+
+        <main class="gallery-grid" id="galleryGrid" role="region" aria-label="Thư viện ảnh tương tác"></main>
+    </div>
+
+    <div id="galleryModal" class="modal-overlay" role="dialog" aria-modal="true" aria-label="Trình xem ảnh phóng to" aria-hidden="true">
+        <div class="modal-content gallery-modal-content">
+            <button id="closeModalBtn" class="close-btn" aria-label="Đóng trình xem ảnh">✕</button>
+            
+            <div class="modal-body-gallery">
+                <button id="prevImgBtn" class="nav-arrow-btn" aria-label="Ảnh trước đó">◀</button>
+                <div class="image-viewport">
+                    <img id="modalMainImage" src="" alt="Hình ảnh phóng to hiển thị thực tế">
+                    <div id="modalCaption" class="image-caption"></div>
+                </div>
+                <button id="nextImgBtn" class="nav-arrow-btn" aria-label="Ảnh tiếp theo">▶</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="commandPalette" class="modal-overlay palette-overlay" role="dialog" aria-modal="true" aria-label="Hộp lệnh trung tâm" aria-hidden="true">
+        <div class="modal-content palette-content">
+            <div class="palette-search-wrapper">
+                <span class="search-icon" aria-hidden="true">＞</span>
+                <input type="text" id="paletteInput" placeholder="Nhập từ khóa tìm kiếm lệnh (Ví dụ: Thư viện, Chế độ...)" aria-label="Ô nhập lệnh hệ thống" autocomplete="off">
+            </div>
+            <ul id="commandList" class="command-list" role="listbox" aria-label="Danh sách lệnh khả dụng"></ul>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

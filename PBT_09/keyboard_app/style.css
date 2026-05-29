@@ -1,0 +1,288 @@
+:root {
+    --bg-app: #0f172a;
+    --bg-surface: #1e293b;
+    --bg-surface-hover: #334155;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --primary-color: #3b82f6;
+    --focus-ring-color: #f59e0b;
+}
+
+body.light-theme {
+    --bg-app: #f8fafc;
+    --bg-surface: #ffffff;
+    --bg-surface-hover: #f1f5f9;
+    --text-main: #0f172a;
+    --text-muted: #64748b;
+    --primary-color: #2563eb;
+    --focus-ring-color: #ef4444;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background-color: var(--bg-app);
+    color: var(--text-main);
+    margin: 0;
+    padding: 0;
+    transition: background-color 0.25s, color 0.25s;
+}
+
+.app-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 30px 20px;
+}
+
+.app-header {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.app-header h1 {
+    margin: 0 0 15px 0;
+    font-size: 26px;
+    font-weight: 700;
+}
+
+.shortcuts-guide {
+    background: var(--bg-surface);
+    padding: 10px 18px;
+    border-radius: 8px;
+    display: inline-block;
+    font-size: 14px;
+    color: var(--text-muted);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.badge {
+    background: var(--primary-color);
+    color: #fff;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-family: monospace;
+}
+
+.slideshow-indicator {
+    margin-top: 12px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #10b981;
+}
+
+/* Lưới hiển thị danh sách ảnh */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.gallery-item {
+    background: var(--bg-surface);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 10px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-align: left;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.item-info {
+    padding: 8px 4px 2px 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.item-title {
+    font-weight: 600;
+    font-size: 15px;
+}
+
+.item-number {
+    font-family: monospace;
+    background: rgba(148, 163, 184, 0.2);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 12px;
+}
+
+/* --- YÊU CẦU QUAN TRỌNG: FOCUS RING VISIBLE CHO ĐIỀU HƯỚNG TAB --- */
+*:focus-visible {
+    outline: 3px solid var(--focus-ring-color) !important;
+    outline-offset: 3px !important;
+    box-shadow: 0 0 0 5px rgba(245, 158, 11, 0.2);
+}
+
+/* Toàn bộ cấu trúc lớp phủ Overlays (Modals) */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+}
+
+.modal-overlay[aria-hidden="false"] {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal-content {
+    background: var(--bg-surface);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    position: relative;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+/* Trình xem ảnh chi tiết */
+.gallery-modal-content {
+    max-width: 850px;
+    width: 90%;
+    padding: 25px;
+}
+
+.modal-body-gallery {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.image-viewport {
+    flex-grow: 1;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.image-viewport img {
+    max-width: 100%;
+    max-height: 65vh;
+    border-radius: 8px;
+    object-fit: contain;
+}
+
+.image-caption {
+    margin-top: 15px;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text-main);
+}
+
+.nav-arrow-btn, .close-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: var(--text-main);
+    cursor: pointer;
+    border-radius: 50%;
+    transition: background 0.2s;
+}
+
+.nav-arrow-btn {
+    width: 45px;
+    height: 45px;
+    font-size: 16px;
+}
+
+.close-btn {
+    position: absolute;
+    top: -15px; right: -15px;
+    width: 34px; height: 34px;
+    font-size: 14px;
+    background: #ef4444;
+    color: white;
+}
+
+.nav-arrow-btn:hover, .close-btn:hover {
+    background: var(--primary-color);
+}
+
+/* --- THIẾT KẾ VS CODE STYLE COMMAND PALETTE --- */
+.palette-overlay {
+    align-items: flex-start;
+    padding-top: 10vh;
+}
+
+.palette-content {
+    width: 100%;
+    max-width: 550px;
+    overflow: hidden;
+    animation: slideDown 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideDown {
+    from { transform: translateY(-20px); }
+    to { transform: translateY(0); }
+}
+
+.palette-search-wrapper {
+    display: flex;
+    align-items: center;
+    padding: 14px 18px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.search-icon {
+    font-size: 16px;
+    color: var(--primary-color);
+    margin-right: 12px;
+}
+
+#paletteInput {
+    background: none;
+    border: none;
+    color: var(--text-main);
+    font-size: 16px;
+    width: 100%;
+    outline: none;
+}
+
+.command-list {
+    list-style: none;
+    margin: 0;
+    padding: 6px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.command-item {
+    padding: 10px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--text-main);
+}
+
+/* Highlight dòng lệnh được lựa chọn */
+.command-item.selected, .command-item:hover {
+    background-color: var(--primary-color);
+    color: #ffffff;
+}
+
+.command-shortcut {
+    font-family: monospace;
+    font-size: 11px;
+    background: rgba(255, 255, 255, 0.15);
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: inherit;
+}
