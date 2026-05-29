@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Đoán Số Ngẫu Nhiên</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+            background-color: #f0f2f5;
+            padding-top: 100px;
+            color: #333;
+        }
+        .container {
+            background-color: white;
+            max-width: 450px;
+            margin: 0 auto;
+            padding: 30px;
+            border-radius: 12px;
+            shadow: 0 4px 6px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+        }
+        h1 {
+            color: #1e3a8a;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        p {
+            color: #666;
+            font-size: 15px;
+            margin-bottom: 25px;
+        }
+        button {
+            background-color: #2563eb;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        button:hover {
+            background-color: #1d4ed8;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Trò Chơi Đoán Số Bí Ẩn</h1>
+        <p>Máy tính đã chọn một số ngẫu nhiên từ <b>1 đến 100</b>.<br>Bạn có tối đa <b>7 lượt</b> để tìm ra nó!</p>
+        <button onclick="startGame()">Bắt đầu chơi ngay</button>
+    </div>
+
+    <script src="guess.js"></script>
+</body>
+</html>
