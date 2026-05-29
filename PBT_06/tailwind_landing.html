@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AuraStream Gear - Cao Cấp & Đột Phá Công Nghệ AR</title>
+    <!-- Tailwind CSS Play CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Cấu hình Tailwind hỗ trợ chế độ Dark Mode dựa trên Class Strategy
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts & Tailwind Icons Integration via Unpkg/CDN -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+</head>
+<body class="bg-slate-50 text-slate-900 dark:bg-slate-900 dark:text-slate-100 font-sans antialiased transition-colors duration-300">
+
+    <!-- 1. NAVBAR SECTION -->
+    <!-- Đạt yêu cầu: flex justify-between items-center, hỗ trợ tối đa Dark Mode & Responsive Menu -->
+    <nav id="main-navbar" class="sticky top-0 z-50 backdrop-blur-md bg-white/90 dark:bg-slate-900/90 border-b border-slate-200 dark:border-slate-800/80 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                
+                <!-- Logo Brand -->
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#" class="text-2xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
+                        AURA<span class="text-slate-800 dark:text-white">STREAM</span>
+                    </a>
+                </div>
+
+                <!-- Desktop Navigation Menu Links -->
+                <div class="hidden md:flex items-center space-x-8 font-medium">
+                    <a href="#" class="text-indigo-600 dark:text-indigo-400 border-b-2 border-indigo-500 px-1 py-2 text-sm">Trang Chủ</a>
+                    <a href="#products-section" class="text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200 text-sm">Sản Phẩm</a>
+                    <a href="#ecosystem-section" class="text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200 text-sm">Hệ Sinh Thái</a>
+                    <a href="#faq-section" class="text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200 text-sm">Trợ Giúp</a>
+                </div>
+
+                <!-- Action Utilities (Search, Dark mode toggle, Cart, Mobile Burger) -->
+                <div class="flex items-center space-x-4">
+                    
+                    <!-- Nút Chuyển Chế Độ Dark Mode (Element 1 sử dụng dark: variant) -->
+                    <button id="theme-toggle-btn" class="p-2.5 rounded-full text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-200" aria-label="Toggle Dark Mode">
+                        <i id="theme-toggle-dark-icon" class="bi bi-moon-stars-fill text-lg hidden"></i>
+                        <i id="theme-toggle-light-icon" class="bi bi-sun-fill text-lg"></i>
+                    </button>
+
+                    <!-- Giỏ Hàng Quick Action -->
+                    <a href="#" class="relative p-2.5 rounded-full text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all" aria-label="Shopping Cart">
+                        <i class="bi bi-bag-heart text-xl"></i>
+                        <span class="absolute top-1 right-1 flex h-4 w-4 items-center justify-center rounded-full bg-rose-500 text-[10px] font-bold text-white ring-2 ring-white dark:ring-slate-900">
+                            2
+                        </span>
+                    </a>
+
+                    <!-- Nút Toggle Menu trên Mobile (Màn hình < 768px) -->
+                    <button id="mobile-menu-hamburger" type="button" class="md:hidden p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none" aria-label="Open Menu">
+                        <i id="hamburger-icon-open" class="bi bi-list text-2xl"></i>
+                        <i id="hamburger-icon-close" class="bi bi-x-lg text-xl hidden"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Drawer Overlay Menu -->
+        <div id="mobile-menu-drawer" class="hidden md:hidden border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 px-4 pt-3 pb-6 space-y-3 transition-all">
+            <a href="#" class="block px-4 py-2.5 rounded-xl bg-indigo-50 dark:bg-indigo-950/40 text-indigo-600 dark:font-semibold text-base">Trang Chủ</a>
+            <a href="#products-section" class="block px-4 py-2.5 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-900 text-base">Sản Phẩm</a>
+            <a href="#ecosystem-section" class="block px-4 py-2.5 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-900 text-base">Hệ Sinh Thái</a>
+            <a href="#faq-section" class="block px-4 py-2.5 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-900 text-base">Trợ Giúp</a>
+        </div>
+    </nav>
+
+    <!-- 2. HERO SECTION -->
+    <!-- Đạt yêu cầu: Full-width background, centered text, CTA button, phong cách Điện ảnh Cinematic AR -->
+    <section class="relative overflow-hidden bg-slate-900 py-32 sm:py-40 lg:py-48 bg-gradient-to-tr from-slate-950 via-indigo-950 to-purple-950">
+        <!-- Lớp phủ kết cấu trang trí dạng lưới cyber mờ -->
+        <div class="absolute inset-0 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-30"></div>
+        
+        <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <!-- Badge xu hướng công nghệ -->
+            <span class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-semibold tracking-wider uppercase text-cyan-400 bg-cyan-400/10 border border-cyan-400/20 mb-8 animation-pulse">
+                <span class="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping"></span> Kỷ Nguyên Đồ Họa Không Gian 2026
+            </span>
+            
+            <!-- Tiêu đề chính -->
+            <h1 class="text-4xl sm:text-5xl lg:text-7xl font-extrabold text-white tracking-tight leading-none mb-8">
+                Đưa Điện Ảnh Ra <br class="hidden sm:inline" />
+                <span class="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-indigo-400 to-purple-400">Không Gian Thực Tế</span>
+            </h1>
+            
+            <!-- Mô tả dự án phụ đề -->
+            <p class="max-w-2xl mx-auto text-base sm:text-lg lg:text-xl text-slate-400 leading-relaxed mb-10">
+                Trải nghiệm nền tảng điện ảnh AR <span class="text-slate-200 font-semibold">AuraStream</span>. Đẩy toàn bộ nhân vật, bối cảnh 3D siêu thực độ trễ thấp đè lên thực tại ngay trong phòng khách của bạn.
+            </p>
+            
+            <!-- Khối nút bấm CTA hành động -->
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                <a href="#products-section" class="w-full sm:w-auto px-8 py-4 text-sm font-bold text-white bg-gradient-to-r from-indigo-500 to-purple-600 rounded-xl shadow-lg shadow-indigo-500/25 hover:shadow-xl hover:shadow-indigo-500/40 hover:-translate-y-0.5 transition-all duration-200 text-center">
+                    Sắm Thiết Bị Ngay <i class="bi bi-arrow-right-short text-lg align-middle ml-1"></i>
+                </a>
+                <a href="#ecosystem-section" class="w-full sm:w-auto px-8 py-4 text-sm font-semibold text-slate-300 bg-slate-800/80 border border-slate-700 rounded-xl hover:bg-slate-800 hover:text-white hover:border-slate-600 transition-all duration-200 text-center">
+                    Xem Video Demo <i class="bi bi-play-circle ml-1.5 align-middle"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. PRODUCT GRID SECTION -->
+    <!-- Đạt yêu cầu: Lưới responsive chuẩn grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 -->
+    <section id="products-section" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+        
+        <!-- Khối Tiêu Đề Mục (Element 2 sử dụng dark: variant cho text tiêu đề) -->
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+            <div>
+                <h2 class="text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white sm:text-4xl">
+                    Thiết Bị Điện Ảnh AR Đỉnh Cao
+                </h2>
+                <p class="text-slate-500 dark:text-slate-400 mt-2 max-w-xl">
+                    Tối ưu hóa phần cứng phần mềm, tương thích tuyệt đối luồng suy luận mô hình AI ONNX, YOLO và MediaPipe real-time.
+                </p>
+            </div>
+            <div class="flex items-center gap-2 text-sm font-bold text-indigo-600 dark:text-indigo-400 hover:underline cursor-pointer">
+                Xem toàn bộ danh mục sản phẩm <i class="bi bi-arrow-right"></i>
+            </div>
+        </div>
+
+        <!-- Ô Lưới Grid Cấu Hình Sản Phẩm -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            
+            <!-- Card Sản Phẩm 1 (Element 3 dùng dark: variant cho cấu trúc nền card và hiệu ứng chuyển đổi shadow) -->
+            <div class="group bg-white dark:bg-slate-800 rounded-2xl border border-slate-200/60 dark:border-slate-700/50 overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 flex flex-col justify-between">
+                <div class="relative overflow-hidden bg-slate-100 dark:bg-slate-900">
+                    <!-- Nhãn Sale đỏ rực rỡ nổi bật -->
+                    <span class="absolute top-4 left-4 z-15 bg-rose-500 text-white text-[11px] font-extrabold tracking-widest px-2.5 py-1 rounded-md shadow-sm uppercase">
+                        Sale 20%
+                    </span>
+                    <img src="https://images.unsplash.com/photo-1593508512255-86ab42a8e620?auto=format&fit=crop&w=600&q=80" alt="Kính Kính Kính Kính Kính Kính Kính" class="w-full h-56 object-cover object-center group-hover:scale-105 transition-transform duration-500">
+                </div>
+                <div class="p-5 flex-grow flex flex-col justify-between">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-purple-600 dark:text-purple-400">Flagship Device</span>
+                        <h3 class="text-lg font-bold text-slate-800 dark:text-white mt-1 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">AuraGlass Pro Cinematic</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 line-clamp-2">Kính AR tăng cường tích hợp lõi tracking 4K, hỗ trợ tái cấu trúc topo học biên khuôn mặt.</p>
+                    </div>
+                    <div class="mt-4">
+                        <div class="flex items-baseline gap-2 mb-4">
+                            <span class="text-xl font-extrabold text-slate-900 dark:text-white">14.300.000đ</span>
+                            <span class="text-xs text-slate-400 line-through">18.000.000đ</span>
+                        </div>
+                        <button class="w-full py-2.5 px-4 text-xs font-bold text-center text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-slate-700 rounded-xl group-hover:bg-indigo-600 group-hover:text-white dark:group-hover:bg-indigo-500 dark:group-hover:text-white transition-all duration-200">
+                            <i class="bi bi-cart-plus mr-1.5 text-sm"></i> Thêm Vào Giỏ Hàng
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card Sản Phẩm 2 -->
+            <div class="group bg-white dark:bg-slate-800 rounded-2xl border border-slate-200/60 dark:border-slate-700/50 overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 flex flex-col justify-between">
+                <div class="relative overflow-hidden bg-slate-100 dark:bg-slate-900">
+                    <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=600&q=80" alt="Tai nghe" class="w-full h-56 object-cover object-center group-hover:scale-105 transition-transform duration-500">
+                </div>
+                <div class="p-5 flex-grow flex flex-col justify-between">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-cyan-600 dark:text-cyan-400">Audio Spatial</span>
+                        <h3 class="text-lg font-bold text-slate-800 dark:text-white mt-1 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">AuraStream Sound H2</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 line-clamp-2">Tai nghe âm thanh vòm không gian thực tế, chống ồn chủ động thích ứng môi trường ngữ cảnh.</p>
+                    </div>
+                    <div class="mt-4">
+                        <div class="flex items-baseline gap-2 mb-4">
+                            <span class="text-xl font-extrabold text-slate-900 dark:text-white">3.900.000đ</span>
+                        </div>
+                        <button class="w-full py-2.5 px-4 text-xs font-bold text-center text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-slate-700 rounded-xl group-hover:bg-indigo-600 group-hover:text-white dark:group-hover:bg-indigo-500 dark:group-hover:text-white transition-all duration-200">
+                            <i class="bi bi-cart-plus mr-1.5 text-sm"></i> Thêm Vào Giỏ Hàng
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card Sản Phẩm 3 -->
+            <div class="group bg-white dark:bg-slate-800 rounded-2xl border border-slate-200/60 dark:border-slate-700/50 overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 flex flex-col justify-between">
+                <div class="relative overflow-hidden bg-slate-100 dark:bg-slate-900">
+                    <span class="absolute top-4 left-4 z-15 bg-rose-500 text-white text-[11px] font-extrabold tracking-widest px-2.5 py-1 rounded-md shadow-sm uppercase">
+                        Hot
+                    </span>
+                    <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=600&q=80" alt="Đồng hồ" class="w-full h-56 object-cover object-center group-hover:scale-105 transition-transform duration-500">
+                </div>
+                <div class="p-5 flex-grow flex flex-col justify-between">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">Biometrics</span>
+                        <h3 class="text-lg font-bold text-slate-800 dark:text-white mt-1 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">Aura Band Sensor v3</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 line-clamp-2">Vòng đeo sinh trắc tích hợp đo lường phản hồi xúc cảm, đồng bộ hóa canvas biểu cảm thời thực.</p>
+                    </div>
+                    <div class="mt-4">
+                        <div class="flex items-baseline gap-2 mb-4">
+                            <span class="text-xl font-extrabold text-slate-900 dark:text-white">5.150.000đ</span>
+                            <span class="text-xs text-slate-400 line-through">6.200.000đ</span>
+                        </div>
+                        <button class="w-full py-2.5 px-4 text-xs font-bold text-center text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-slate-700 rounded-xl group-hover:bg-indigo-600 group-hover:text-white dark:group-hover:bg-indigo-500 dark:group-hover:text-white transition-all duration-200">
+                            <i class="bi bi-cart-plus mr-1.5 text-sm"></i> Thêm Vào Giỏ Hàng
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card Sản Phẩm 4 -->
+            <div class="group bg-white dark:bg-slate-800 rounded-2xl border border-slate-200/60 dark:border-slate-700/50 overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 flex flex-col justify-between">
+                <div class="relative overflow-hidden bg-slate-100 dark:bg-slate-900">
+                    <img src="https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?auto=format&fit=crop&w=600&q=80" alt="Máy tính nhúng" class="w-full h-56 object-cover object-center group-hover:scale-105 transition-transform duration-500">
+                </div>
+                <div class="p-5 flex-grow flex flex-col justify-between">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-amber-600 dark:text-amber-400">Compute Unit</span>
+                        <h3 class="text-lg font-bold text-slate-800 dark:text-white mt-1 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">Aura AI Edge Node</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 line-clamp-2">Trạm xử lý biên mini tối ưu tăng tốc phần cứng cho suy luận mô hình học sâu, giảm tải cho di động.</p>
+                    </div>
+                    <div class="mt-4">
+                        <div class="flex items-baseline gap-2 mb-4">
+                            <span class="text-xl font-extrabold text-slate-900 dark:text-white">8.600.000đ</span>
+                        </div>
+                        <button class="w-full py-2.5 px-4 text-xs font-bold text-center text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-slate-700 rounded-xl group-hover:bg-indigo-600 group-hover:text-white dark:group-hover:bg-indigo-500 dark:group-hover:text-white transition-all duration-200">
+                            <i class="bi bi-cart-plus mr-1.5 text-sm"></i> Thêm Vào Giỏ Hàng
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 4. HỆ SINH THÁI & TÍNH NĂNG NỔI BẬT SECTION -->
+    <section id="ecosystem-section" class="bg-slate-100 dark:bg-slate-950 transition-colors duration-300 py-24 border-y border-slate-200 dark:border-slate-800/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white sm:text-4xl">
+                    Tương Tác Không Gian Đa Chiều
+                </h2>
+                <p class="text-slate-500 dark:text-slate-400 mt-4 text-base">
+                    Hệ thống tích hợp sâu các thuật toán thị giác máy tính cao cấp phục vụ kết xuất môi trường ngữ nghĩa chân thực nhất.
+                </p>
+            </div>
+
+            <!-- Khối 3 cột mô tả tính năng -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Tính năng 1 (Element 4 dùng dark: variant cho icon bọc ngoài) -->
+                <div class="p-6 bg-white dark:bg-slate-900 border border-slate-200/50 dark:border-slate-800 rounded-2xl shadow-sm">
+                    <div class="w-12 h-12 rounded-xl bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 flex items-center justify-center mb-5 text-xl font-bold">
+                        <i class="bi bi-person-bounding-box"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Biện Luận Diện Mạo</h3>
+                    <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
+                        Thuật toán nhận diện tracking 6 nhóm topo độc lập, tự động bù đắp dữ liệu thiếu hụt khi mất dấu vật thể hoặc landmark khuôn mặt.
+                    </p>
+                </div>
+
+                <!-- Tính năng 2 -->
+                <div class="p-6 bg-white dark:bg-slate-900 border border-slate-200/50 dark:border-slate-800 rounded-2xl shadow-sm">
+                    <div class="w-12 h-12 rounded-xl bg-purple-50 dark:bg-purple-950/60 text-purple-600 dark:text-purple-400 flex items-center justify-center mb-5 text-xl font-bold">
+                        <i class="bi bi-layers-half"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Ngữ Nghĩa Môi Trường</h3>
+                    <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
+                        Hệ thống tự động phân tách cấu trúc hình học của căn phòng (tường, bàn ghế), cho phép vật thể ảo đổ bóng đè chính xác lên thực tế.
+                    </p>
+                </div>
+
+                <!-- Tính năng 3 -->
+                <div class="p-6 bg-white dark:bg-slate-900 border border-slate-200/50 dark:border-slate-800 rounded-2xl shadow-sm">
+                    <div class="w-12 h-12 rounded-xl bg-cyan-50 dark:bg-cyan-950/60 text-cyan-600 dark:text-cyan-400 flex items-center justify-center mb-5 text-xl font-bold">
+                        <i class="bi bi-lightning-charge"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Suy Luận Real-Time</h3>
+                    <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
+                        Nhúng trực tiếp mô hình lượng tử hóa INT8 vào thiết bị di động, duy trì tốc độ khung hình 60fps mượt mà không nóng máy.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. ACCORDION / HELP FAQ SECTION -->
+    <section id="faq-section" class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white">Giải Đáp Thắc Mắc Kỹ Thuật</h2>
+            <p class="text-slate-500 dark:text-slate-400 mt-2">Thông tin cấu hình phần cứng và nền tảng phim AuraStream</p>
+        </div>
+
+        <div class="space-y-4">
+            <!-- FAQ Item 1 -->
+            <div class="border border-slate-200 dark:border-slate-800 rounded-xl bg-white dark:bg-slate-900 overflow-hidden">
+                <button type="button" class="faq-toggle-btn w-full px-6 py-4 flex justify-between items-center text-left font-semibold text-slate-800 dark:text-white hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+                    <span>Ứng dụng AuraStream đòi hỏi cấu hình thiết bị di động tối thiểu thế nào?</span>
+                    <i class="bi bi-chevron-down text-slate-400 transition-transform duration-300"></i>
+                </button>
+                <div class="faq-content hidden px-6 pb-5 text-sm text-slate-500 dark:text-slate-400 border-t border-slate-100 dark:border-slate-800/60 pt-4">
+                    Nền tảng chạy mượt mà nhất trên các dòng điện thoại cao cấp có tích hợp chip xử lý đồ họa mạnh mẽ (Ví dụ: iPhone 12 Pro trở lên), phục vụ trích xuất camera thời gian thực và xử lý luồng suy luận AI cục bộ trên thiết bị.
+                </div>
+            </div>
+
+            <!-- FAQ Item 2 -->
+            <div class="border border-slate-200 dark:border-slate-800 rounded-xl bg-white dark:bg-slate-900 overflow-hidden">
+                <button type="button" class="faq-toggle-btn w-full px-6 py-4 flex justify-between items-center text-left font-semibold text-slate-800 dark:text-white hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+                    <span>Làm cách nào cài đặt môi trường test thử nghiệm build Unity của hệ thống?</span>
+                    <i class="bi bi-chevron-down text-slate-400 transition-transform duration-300"></i>
+                </button>
+                <div class="faq-content hidden px-6 pb-5 text-sm text-slate-500 dark:text-slate-400 border-t border-slate-100 dark:border-slate-800/60 pt-4">
+                    Các nhà phát triển có thể thiết lập phân vùng ảo hóa hệ điều hành macOS trên máy tính Windows cá nhân, cấu hình Xcode liên kết trực tiếp sang cổng thiết bị để tiến hành nạp gói package biên dịch từ môi trường Unity 6.x LTS.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. FOOTER SECTION -->
+    <!-- Đạt yêu cầu: Cấu trúc Grid layout sắc sảo hoàn toàn bằng Tailwind, hỗ trợ Element 5 dark: variant cho nền footer -->
+    <footer class="bg-slate-900 text-slate-400 border-t border-slate-800 pt-16 pb-8 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Grid 4 Cột lớn -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+                <!-- Cột 1 -->
+                <div>
+                    <h4 class="text-white font-bold text-lg mb-4 tracking-wider">AURASTREAM GEAR</h4>
+                    <p class="text-sm text-slate-400 leading-relaxed mb-4">
+                        Hệ sinh thái thiết bị phần cứng bổ trợ và nền tảng không gian tăng cường thực tế, dẫn dắt tương lai ngành giải trí nghe nhìn điện ảnh cao cấp.
+                    </p>
+                    <div class="flex space-x-4 text-lg">
+                        <a href="#" class="hover:text-white transition-colors"><i class="bi bi-github"></i></a>
+                        <a href="#" class="hover:text-white transition-colors"><i class="bi bi-twitter-x"></i></a>
+                        <a href="#" class="hover:text-white transition-colors"><i class="bi bi-discord"></i></a>
+                    </div>
+                </div>
+
+                <!-- Cột 2 -->
+                <div>
+                    <h4 class="text-white font-semibold text-sm uppercase tracking-widest mb-4">Danh Mục Thiết Bị</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition-colors">Kính Không Gian AR</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Tai Nghe Spatial Audio</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Cảm Biến Sinh Trắc</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Trạm Xử Lý Biên Edge</a></li>
+                    </ul>
+                </div>
+
+                <!-- Cột 3 -->
+                <div>
+                    <h4 class="text-white font-semibold text-sm uppercase tracking-widest mb-4">Dành Cho Developer</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition-colors">Tài Liệu Cấu Hình API</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Tải Bộ SDK Unity 6</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Mô Hình Lượng Tử Hóa</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Quản Lý Topo Học Fallback</a></li>
+                    </ul>
+                </div>
+
+                <!-- Cột 4 -->
+                <div>
+                    <h4 class="text-white font-semibold text-sm uppercase tracking-widest mb-4">Đăng Ký Khuyến Mãi</h4>
+                    <p class="text-sm text-slate-400 mb-4">Nhận bản tin cập nhật thiết bị và firmware tối ưu hóa thuật toán sớm nhất.</p>
+                    <form class="flex flex-col sm:flex-row gap-2">
+                        <input type="email" placeholder="Email của bạn..." class="w-full bg-slate-800 text-white text-xs px-4 py-3 rounded-lg border border-slate-700 focus:outline-none focus:border-indigo-500 placeholder-slate-500 transition-colors">
+                        <button type="button" class="bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold px-4 py-3 rounded-lg transition-colors whitespace-nowrap">Đăng ký</button>
+                    </form>
+                </div>
+            </div>
+
+            <hr class="border-slate-800 mb-8">
+
+            <!-- Bản quyền chân trang -->
+            <div class="flex flex-col sm:flex-row justify-between items-center gap-4 text-xs">
+                <p>&copy; 2026 AuraStream Platform. Tất cả các quyền được bảo lưu.</p>
+                <p class="text-slate-500">Thiết kế 100% bằng hệ thống <span class="text-slate-400 font-semibold">Tailwind CSS Utility Classes</span> không viết mã CSS rời.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE JAVASCRIPT: Quản lý đóng mở menu di động và kích hoạt chế độ tối (Dark Mode) -->
+    <script>
+        // A. Xử lý Logic Toggle Dark Mode (Class Strategy)
+        const themeToggleBtn = document.getElementById('theme-toggle-btn');
+        const darkIcon = document.getElementById('theme-toggle-dark-icon');
+        const lightIcon = document.getElementById('theme-toggle-light-icon');
+
+        // Kiểm tra cấu hình lưu trữ hoặc cấu hình mặc định của hệ thống máy tính
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            darkIcon.classList.remove('hidden');
+            lightIcon.classList.add('hidden');
+        } else {
+            document.documentElement.classList.remove('dark');
+            darkIcon.classList.add('hidden');
+            lightIcon.classList.remove('hidden');
+        }
+
+        // Sự kiện click nút đổi theme
+        themeToggleBtn.addEventListener('click', function() {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('color-theme', 'light');
+                darkIcon.classList.add('hidden');
+                lightIcon.classList.remove('hidden');
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('color-theme', 'dark');
+                darkIcon.classList.remove('hidden');
+                lightIcon.classList.add('hidden');
+            }
+        });
+
+        // B. Xử lý Logic Responsive Mobile Hamburger Drawer
+        const hamburgerBtn = document.getElementById('mobile-menu-hamburger');
+        const menuDrawer = document.getElementById('mobile-menu-drawer');
+        const iconOpen = document.getElementById('hamburger-icon-open');
+        const iconClose = document.getElementById('hamburger-icon-close');
+
+        hamburgerBtn.addEventListener('click', () => {
+            menuDrawer.classList.toggle('hidden');
+            iconOpen.classList.toggle('hidden');
+            iconClose.classList.toggle('hidden');
+        });
+
+        // Đóng menu drawer tự động nếu người dùng click vào link điều hướng di động
+        const mobileLinks = menuDrawer.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menuDrawer.classList.add('hidden');
+                iconOpen.classList.remove('hidden');
+                iconClose.classList.add('hidden');
+            });
+        });
+
+        // C. Xử lý Accordion FAQ Thu Gọn
+        const faqButtons = document.querySelectorAll('.faq-toggle-btn');
+        faqButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const content = btn.nextElementSibling;
+                const icon = btn.querySelector('i');
+                
+                content.classList.toggle('hidden');
+                icon.classList.toggle('rotate-180');
+            });
+        });
+    </script>
+</body>
+</html>
