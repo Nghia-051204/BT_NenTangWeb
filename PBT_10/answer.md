@@ -174,3 +174,224 @@ async function getAllData() {
 - Dễ debug hơn.
 
 ---
+
+## PHẦN C — PHÂN TÍCH (20 điểm)
+
+## Câu C1 (10đ) — Error Handling Strategy cho E-Commerce App
+
+### Chiến lược tổng quát
+
+Khi xây dựng app E-Commerce, nên có **layered error handling**:
+- **Global Error Boundary** (UI)
+- **API Client Wrapper** (centralized)
+- **User-friendly messages** + **Retry + Fallback**
+
+---
+
+### 1. Network Errors (mất mạng giữa chừng)
+
+**Xử lý:**
+- Phát hiện lỗi `TypeError: Failed to fetch` hoặc `ERR_INTERNET_DISCONNECTED`.
+- Hiển thị thông báo "Mất kết nối. Vui lòng kiểm tra mạng." + nút Retry.
+- Tự động retry với **exponential backoff**.
+
+### 2. API Errors
+
+| Status Code | Xử lý |
+|-------------|------|
+| **404**     | "Không tìm thấy dữ liệu" hoặc redirect về trang 404 |
+| **500**     | "Lỗi máy chủ. Chúng tôi đang khắc phục." + log lỗi (Sentry) |
+| **429** (Too Many Requests) | Delay theo `Retry-After` header hoặc exponential backoff + thông báo "Quá nhiều yêu cầu, vui lòng chờ" |
+
+---
+
+### 3. Timeout (API chậm > 10 giây)
+
+```js
+const fetchWithTimeout = async (url, options = {}, timeoutMs = 10000) => {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
+
+    try {
+        const response = await fetch(url, {
+            ...options,
+            signal: controller.signal
+        });
+        
+        clearTimeout(timeoutId);
+        return response;
+    } catch (error) {
+        clearTimeout(timeoutId);
+        if (error.name === 'AbortError') {
+            throw new Error(`Request timeout after ${timeoutMs}ms`);
+        }
+        throw error;
+    }
+};
+```
+
+**Sử dụng:**
+```js
+const data = await fetchWithTimeout('/api/products', {}, 10000);
+```
+
+---
+
+### 4. Retry Logic (thử lại 3 lần nếu lỗi network)
+
+```js
+const fetchWithRetry = async (url, options = {}, maxRetries = 3) => {
+    let lastError;
+
+    for (let attempt = 0; attempt <= maxRetries; attempt++) {
+        try {
+            const response = await fetchWithTimeout(url, options, 10000);
+            
+            if (!response.ok) {
+                if (response.status === 429) {
+                    const retryAfter = response.headers.get('Retry-After') || 2000;
+                    await new Promise(r => setTimeout(r, retryAfter));
+                    continue;
+                }
+                throw new Error(`HTTP ${response.status}`);
+            }
+            
+            return response;
+        } catch (error) {
+            lastError = error;
+            
+            // Chỉ retry với network error hoặc timeout
+            if (!error.message.includes('timeout') && 
+                !error.message.includes('Failed to fetch') && 
+                attempt === maxRetries) {
+                break;
+            }
+
+            // Exponential backoff
+            if (attempt < maxRetries) {
+                const delay = Math.pow(2, attempt) * 1000; // 1s, 2s, 4s
+                await new Promise(r => setTimeout(r, delay));
+            }
+        }
+    }
+
+    throw lastError;
+};
+```
+
+**Sử dụng:**
+```js
+const response = await fetchWithRetry('/api/cart/add', {
+    method: 'POST',
+    body: JSON.stringify(data)
+});
+```
+
+---
+
+## Câu C2 (10đ) — Promise.all vs Promise.allSettled vs Promise.race vs Promise.any
+
+### Bảng so sánh
+
+| Method            | Khi nào resolve?                          | Khi nào reject?                          | Use case thực tế |
+|-------------------|------------------------------------------|------------------------------------------|------------------|
+| **.all()**        | Tất cả promises đều **fulfilled**        | **Bất kỳ** promise nào reject            | Load nhiều dữ liệu quan trọng cùng lúc (product + reviews + recommendations) |
+| **.allSettled()** | Luôn resolve sau khi tất cả hoàn thành   | Không bao giờ reject                     | Load nhiều API dashboard, muốn biết cái nào thành công/thất bại |
+| **.race()**       | Promise nào hoàn thành **đầu tiên**      | Promise đầu tiên reject                  | Request nhiều server, lấy kết quả nhanh nhất (CDN fallback) |
+| **.any()**        | Promise nào **fulfilled** đầu tiên       | Tất cả đều rejected                      | Gọi nhiều API dự phòng, lấy kết quả thành công đầu tiên |
+
+---
+
+### Ví dụ thực tế
+
+#### 1. `Promise.all()` — Load trang Product Detail
+
+```js
+async function loadProductPage(productId) {
+    try {
+        const [product, reviews, recommendations] = await Promise.all([
+            fetchWithRetry(`/api/products/${productId}`),
+            fetchWithRetry(`/api/products/${productId}/reviews`),
+            fetchWithRetry(`/api/products/${productId}/recommendations`)
+        ]);
+        
+        return { product, reviews, recommendations };
+    } catch (error) {
+        console.error("Một trong các API bị lỗi:", error);
+        // Có thể redirect hoặc thông báo lỗi
+    }
+}
+```
+
+---
+
+#### 2. `Promise.allSettled()` — Dashboard Analytics
+
+```js
+async function loadDashboard() {
+    const promises = [
+        fetchWithRetry('/api/sales'),
+        fetchWithRetry('/api/orders'),
+        fetchWithRetry('/api/users'),           // có thể lỗi
+        fetchWithRetry('/api/inventory')
+    ];
+
+    const results = await Promise.allSettled(promises);
+
+    results.forEach((result, index) => {
+        if (result.status === 'fulfilled') {
+            console.log(`API ${index} thành công:`, result.value);
+        } else {
+            console.warn(`API ${index} thất bại:`, result.reason);
+        }
+    });
+}
+```
+
+---
+
+#### 3. `Promise.race()` — Timeout hoặc Fastest Response
+
+```js
+async function getFastestPrice(productId) {
+    const sources = [
+        fetchWithRetry(`/api/price?source=shopee`),
+        fetchWithRetry(`/api/price?source=lazada`),
+        fetchWithRetry(`/api/price?source=tiki`)
+    ];
+
+    // Lấy giá nhanh nhất trong 5 giây
+    const result = await Promise.race([
+        ...sources,
+        new Promise((_, reject) => 
+            setTimeout(() => reject(new Error("Timeout")), 5000)
+        )
+    ]);
+
+    return result;
+}
+```
+
+---
+
+#### 4. `Promise.any()` — Multiple Fallback APIs
+
+```js
+async function getUserProfile(userId) {
+    const sources = [
+        fetchWithRetry(`/api/v1/users/${userId}`),   // primary
+        fetchWithRetry(`/api/v2/users/${userId}`),   // backup
+        fetchWithRetry(`/api/legacy/users/${userId}`) // legacy
+    ];
+
+    try {
+        const response = await Promise.any(sources);
+        return await response.json();
+    } catch (error) {
+        console.error("Tất cả sources đều thất bại");
+        throw error;
+    }
+}
+```
+
+---
